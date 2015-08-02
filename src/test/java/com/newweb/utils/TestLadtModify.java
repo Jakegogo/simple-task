@@ -22,4 +22,11 @@ public class TestLadtModify {
         System.out.println(PathUtil.getWebInfPath());
     }
 
+
+    @Test
+    public void testDirectoryLastModify() {
+        System.out.println(new Date(PathUtil.getWebInfModifyTime("webapp\\static")));
+    }
+
+
 }

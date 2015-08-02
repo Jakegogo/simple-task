@@ -27,6 +27,26 @@ public class FileUtils {
     }
 
 
+    /**
+     * 获取文件最后修改时间
+     * @param directory
+     */
+    public static long getLastModifiyValue(String directory) {
+
+        File file = new File(directory);
+
+        if (!file.exists()) {
+            return -1l;
+        }
+
+        if (!file.isDirectory()) {
+            return -1l;
+        }
+
+        return recursiveSearch(file, 0l);
+    }
+
+
     private static long recursiveSearch(File file, long l) {
 
         for (File f : file.listFiles()) {

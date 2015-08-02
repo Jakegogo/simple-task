@@ -7,6 +7,7 @@
           <element id="module-output" name="newweb" />
         </element>
         <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: junit:junit:4.8.2" />
           <element id="library" level="project" name="Maven: org.springframework:spring-test:3.0.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-context:3.0.6.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-aop:3.0.6.RELEASE" />
@@ -28,7 +29,6 @@
           <element id="library" level="project" name="Maven: commons-pool:commons-pool:1.5.4" />
           <element id="library" level="project" name="Maven: javax.persistence:persistence-api:1.0.2" />
           <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.6.11" />
-          <element id="library" level="project" name="Spring-4.1.6.RELEASE" />
         </element>
       </element>
       <element id="directory" name="META-INF">

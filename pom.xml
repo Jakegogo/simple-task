@@ -9,6 +9,9 @@
     <url>http://maven.apache.org</url>
 
     <properties>
+        <project.statics.path>webapp\\static</project.statics.path>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring.version>3.0.6.RELEASE</spring.version>
     </properties>
@@ -19,8 +22,8 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
-            <scope>test</scope>
+            <version>4.8.2</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -179,36 +182,15 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
-                <groupId>org.codehaus.groovy.maven</groupId>
-                <artifactId>gmaven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>execute</goal>
-                        </goals>
-                        <configuration>
-                            <source>
-                                import java.util.Date
-                                import java.text.MessageFormat
-                                def dateStr = MessageFormat.format("{0,date,yyyy.MM.dd HH:mm:ss}", new Date())
-                                def timestamp = String.valueOf(new Date().getTime())
-                                project.properties['package_time'] = dateStr
-                                project.properties['package_timestamp'] = timestamp
-                            </source>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Package-Time>${package_time}</Package-Time>
-                            <Package-Timestamp>${package_timestamp}</Package-Timestamp>
+                            <Package-Time>${timestamp}</Package-Time><!-- 后端版本 -->
+                            <Implementation-Version>${timestamp}</Implementation-Version>
                         </manifestEntries>
                     </archive>
                 </configuration>
@@ -219,9 +201,8 @@
                 <configuration>
                     <archive>
                         <manifestEntries>
-                            <Package-Time>${package_time}</Package-Time>
-                            <Package-Timestamp>${package_timestamp}</Package-Timestamp>
-                            <Implementation-Version>${package_timestamp}</Implementation-Version>
+                            <Package-Time>${timestamp}</Package-Time><!-- 后端版本 -->
+                            <Implementation-Version>${timestamp}</Implementation-Version>
                         </manifestEntries>
                         <manifest>
                             <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
