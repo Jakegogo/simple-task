@@ -9,8 +9,4 @@ public class App {
         System.out.println("app start.");
     }
 
-    static {
-       System.out.println(Package.getPackage("com.newweb").getImplementationVersion());
-    }
-
 }
