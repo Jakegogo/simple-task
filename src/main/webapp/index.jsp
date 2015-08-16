@@ -15,5 +15,13 @@ Specification-Title: <%=prop.getProperty("Specification-Title")%><br/>
 Specification-Version: <%=prop.getProperty("Specification-Version")%><br/>
 Implementation-Version: <%=prop.getProperty("Implementation-Version")%> <br/>
 
+<script>
+
+
+    function d() {
+
+    }
+
+</script>
 </body>
 </html>
