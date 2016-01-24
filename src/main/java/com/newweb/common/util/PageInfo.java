@@ -35,11 +35,11 @@ public class PageInfo {
 	private boolean autoDesc;
 
 	/**
-	 * @param index
+	 * @param _index
 	 *            页码：从1开始
-	 * @param size
+	 * @param _size
 	 *            页大小：大于0
-	 * @param total
+	 * @param _total
 	 *            总记录数
 	 */
 	public PageInfo(int _index, int _size, int _total) {

@@ -1,5 +1,7 @@
 package com.newweb.common.exception.handler;
 
+import com.newweb.common.constance.CommonErrorCode;
+import com.newweb.common.exception.EbaseRuntimeException;
 import com.newweb.common.util.rest.RestResult;
 import org.eclipse.jetty.http.HttpStatus;
 
@@ -13,8 +15,19 @@ import javax.ws.rs.ext.Provider;
 @Provider
 public class WebApplicationExceptionMapper implements
         ExceptionMapper<Exception> {
+
   @Override
   public Response toResponse(Exception e) {
-    return RestResult.failure(HttpStatus.INTERNAL_SERVER_ERROR_500, e.getMessage());
+    // 自定义业务异常
+    if (e instanceof EbaseRuntimeException) {
+      return RestResult.failure(((EbaseRuntimeException) e).getErrorCode(), e.getMessage());
+    }
+    // 参数异常
+    if (e instanceof IllegalArgumentException) {
+      return RestResult.failure(CommonErrorCode.ILLEGAL_ARGUMENT, e.getMessage());
+    }
+    // 未知异常
+    return RestResult.failure(CommonErrorCode.UNKNOW, e.getMessage());
   }
+
 }

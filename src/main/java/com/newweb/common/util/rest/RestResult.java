@@ -9,6 +9,7 @@ import java.util.Random;
  * Rest结果返回包装
  */
 public class RestResult {
+
 	public static Response success(Object data) {
 		ResponseSuccessObj result = new ResponseSuccessObj();
 		result.setData(data);
@@ -29,12 +30,13 @@ public class RestResult {
 		return Response.status(status).type(MediaType.APPLICATION_JSON).entity(result).build();
 	}
 
+
+	private static int randomSed = 10000;
+
 	public static long generateRequestId() {
 		long curTime = System.currentTimeMillis();
 		int sed = new Random().nextInt(randomSed) + randomSed;
 		return Long.valueOf(curTime + "" + sed);
 	}
-
-	private static int randomSed = 10000;
 
 }

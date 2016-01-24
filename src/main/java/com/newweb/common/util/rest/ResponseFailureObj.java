@@ -11,7 +11,6 @@ public class ResponseFailureObj {
 
 	private String errorMsg;
 	
-
 	public ResponseFailureObj(int errorCode, String errorMsg) {
 		this.requestId = RestResult.generateRequestId();
 		this.errorCode = errorCode;
