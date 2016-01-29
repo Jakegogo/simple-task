@@ -21,4 +21,9 @@ public interface CommonErrorCode {
      */
     int ILLEGAL_ARGUMENT = -3;
 
+    /**
+     * 数据权限异常
+     */
+    int DATA_SECURE = -4;
+
 }

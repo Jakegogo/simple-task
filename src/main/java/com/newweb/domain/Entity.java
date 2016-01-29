@@ -10,32 +10,22 @@ public class Entity implements IEntity {
     /**
      *  
      */
-    private Long id;
-
-    /**
-     *  已经领取过的奖励Id
-     */
-    private String friends;
+    private String id;
 
     /**
      *  
      */
-    private String name;
-
-    /**
-     *  数字
-     */
-    private Integer num;
+    private Integer groupId;
 
     /**
      *  
      */
-    private Integer uid;
+    private Integer userId;
 
     /**
      *  
      */
-    private byte[] a;
+    private String desc;
 
     private static final long serialVersionUID = 1L;
 
@@ -44,7 +34,7 @@ public class Entity implements IEntity {
      *
      * @return the value of entity.id
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -53,97 +43,61 @@ public class Entity implements IEntity {
      *
      * @param id the value for entity.id
      */
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(String id) {
+        this.id = id == null ? null : id.trim();
     }
 
     /**
-     * 获取字段 entity.friends
+     * 获取字段 entity.group_id
      *
-     * @return the value of entity.friends
+     * @return the value of entity.group_id
      */
-    public String getFriends() {
-        return friends;
+    public Integer getGroupId() {
+        return groupId;
     }
 
     /**
-     * 设置字段 entity.friends
+     * 设置字段 entity.group_id
      *
-     * @param friends the value for entity.friends
+     * @param groupId the value for entity.group_id
      */
-    public void setFriends(String friends) {
-        this.friends = friends == null ? null : friends.trim();
+    public void setGroupId(Integer groupId) {
+        this.groupId = groupId;
     }
 
     /**
-     * 获取字段 entity.name
+     * 获取字段 entity.user_id
      *
-     * @return the value of entity.name
+     * @return the value of entity.user_id
      */
-    public String getName() {
-        return name;
+    public Integer getUserId() {
+        return userId;
     }
 
     /**
-     * 设置字段 entity.name
+     * 设置字段 entity.user_id
      *
-     * @param name the value for entity.name
+     * @param userId the value for entity.user_id
      */
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
     /**
-     * 获取字段 entity.num
+     * 获取字段 entity.desc
      *
-     * @return the value of entity.num
+     * @return the value of entity.desc
      */
-    public Integer getNum() {
-        return num;
+    public String getDesc() {
+        return desc;
     }
 
     /**
-     * 设置字段 entity.num
+     * 设置字段 entity.desc
      *
-     * @param num the value for entity.num
+     * @param desc the value for entity.desc
      */
-    public void setNum(Integer num) {
-        this.num = num;
-    }
-
-    /**
-     * 获取字段 entity.uid
-     *
-     * @return the value of entity.uid
-     */
-    public Integer getUid() {
-        return uid;
-    }
-
-    /**
-     * 设置字段 entity.uid
-     *
-     * @param uid the value for entity.uid
-     */
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
-
-    /**
-     * 获取字段 entity.a
-     *
-     * @return the value of entity.a
-     */
-    public byte[] getA() {
-        return a;
-    }
-
-    /**
-     * 设置字段 entity.a
-     *
-     * @param a the value for entity.a
-     */
-    public void setA(byte[] a) {
-        this.a = a;
+    public void setDesc(String desc) {
+        this.desc = desc == null ? null : desc.trim();
     }
 }

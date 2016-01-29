@@ -6,10 +6,21 @@ package com.newweb.common.exception;
  */
 public class BusinessException extends EbaseRuntimeException {
 
+    /**
+     * 构造方法
+     * @param message 提示
+     * @param cause 源异常
+     */
     public BusinessException(String message, Throwable cause) {
         super(message, cause);
     }
 
+    /**
+     * 构造方法
+     * @param errorCode 错误码
+     * @param message 提示
+     * @param cause 源异常
+     */
     public BusinessException(int errorCode, String message, Throwable cause) {
         super(errorCode, message, cause);
     }

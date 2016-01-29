@@ -9,15 +9,11 @@ import org.springframework.stereotype.Component;
  * Created by Jake on 1/17 0017.
  */
 @Component
-public class EntityMapperImpl extends AbstractEntityMapper<Entity, Long> implements EntityMapper {
+public class EntityMapperImpl extends AbstractEntityMapper<Entity, String> implements EntityMapper {
 
     @Override
     protected String namesapceForSqlId() {
         return "com.newweb.persist.EntityMapper";
     }
 
-    @Override
-    public int updateWithBLOBs(Entity record) {
-        return 0;
-    }
 }
