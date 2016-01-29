@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+      http://www.springframework.org/schema/context
+      http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/login" />
+		<property name="filters">
+			<map>
+            	<entry key="urlFilter" value-ref="urlFilter"/>
+            	<entry key="anonFilter" value-ref="anonFilter"/>
+        	</map>
+		</property>
+		<property name="filterChainDefinitions">
+			<value>
+				/login = anonFilter
+				/logout = anonFilter
+				/static/** = anonFilter
+				/** = urlFilter
+			</value>
+		</property>
+	</bean>
+	
+	<bean id="urlFilter" class="com.xuanwu.xcloud.web.security.filter.ShiroUrlBasedFilter">
+	</bean>
+	
+	<bean id="anonFilter" class="com.xuanwu.xcloud.web.security.filter.ShiroAnonymousFilter" />
+	
+	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
+	
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="cacheManager" ref="cacheManager"/>
+		<property name="realm" ref="myRealm" />
+	</bean>
+	
+	<bean id="myRealm" class="com.xuanwu.xcloud.web.security.ShiroDBRealm" >
+	</bean>
+	
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="exceptionMappings">
+			<props>
+				<prop key="org.apache.shiro.authz.UnauthorizedException">/403</prop>
+			</props>
+		</property>
+	</bean> -->
+</beans>
