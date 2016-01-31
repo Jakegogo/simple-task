@@ -8,12 +8,12 @@ import java.util.List;
 
 
 /**
- * 仓储访问接口, 提供通用仓储方法
+ * 仓储访问接口, 提供通用实体仓储方法
  * @author Jake
  * @Data 2016年1月17日
  * @Version 1.0.0
  */
-public interface IEntityMapper<T extends IEntity, PK extends Serializable> {
+public interface IEntityMapper<T extends IEntity, PK extends Serializable> extends IMapper <T> {
 
 	/**
 	 * 根据实体ID，查找实体
@@ -24,21 +24,6 @@ public interface IEntityMapper<T extends IEntity, PK extends Serializable> {
 	T get(PK id);
 
 	/**
-	 * 添加一条记录
-	 * @param t T
-	 * @return
-     */
-	int insert(T t);
-
-	/**
-	 * 添加记录
-	 * (可选字段)
-	 * @param t T
-	 * @return
-     */
-	int insertSelective(T t);
-
-	/**
 	 * 保存一个实体
 	 * 
 	 * @param t
@@ -47,7 +32,7 @@ public interface IEntityMapper<T extends IEntity, PK extends Serializable> {
 
 	/**
 	 * 根据实体ID，删除实体
-	 * 
+	 *
 	 * @param id
 	 */
 	int delete(PK id);
@@ -67,20 +52,5 @@ public interface IEntityMapper<T extends IEntity, PK extends Serializable> {
 	 * @return
 	 */
 	List<T> findResults(QueryParameters param);
-
-	/**
-	 * 更新对象
-	 * @Description: 指定更新
-	 * @param t T
-	 * @return int
-	 */
-	int updateSelective(T t);
-
-	/**
-	 * 更新对象
-	 * @param t T
-	 * @return int
-	 */
-	int update(T t);
 
 }

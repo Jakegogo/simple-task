@@ -34,16 +34,16 @@ public class ShiroUrlBasedFilter extends AuthorizationFilter {
 		boolean isPermitted = false;
 		Subject subject = SecurityUtils.getSubject();
 		if (subject.isAuthenticated()) {
-			RolePermission perm = new RolePermission();
-			String url = hreq.getServletPath();
-			if (StringUtils.isBlank(url)) {
-				url = hreq.getPathInfo();// fixed for IBM WebSphere
-			}
-			perm.setBaseUrl(url);
-			isPermitted = subject.isPermitted(perm);
-			if (!isPermitted) {
-				hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "unauthorized");
-			}
+//			RolePermission perm = new RolePermission();
+//			String url = hreq.getServletPath();
+//			if (StringUtils.isBlank(url)) {
+//				url = hreq.getPathInfo();// fixed for IBM WebSphere
+//			}
+//			perm.setBaseUrl(url);
+//			isPermitted = subject.isPermitted(perm);
+//			if (!isPermitted) {
+//				hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "unauthorized");
+//			}
 		} else {
 			hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "login");
 		}

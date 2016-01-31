@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
-      http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
-      http://www.springframework.org/schema/context
-      http://www.springframework.org/schema/context/spring-context.xsd">
+      http://www.springframework.org/schema/beans/spring-beans-4.1.xsd">
 
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />
@@ -26,10 +23,10 @@
 		</property>
 	</bean>
 	
-	<bean id="urlFilter" class="com.xuanwu.xcloud.web.security.filter.ShiroUrlBasedFilter">
+	<bean id="urlFilter" class="com.newweb.common.security.filter.ShiroUrlBasedFilter">
 	</bean>
 	
-	<bean id="anonFilter" class="com.xuanwu.xcloud.web.security.filter.ShiroAnonymousFilter" />
+	<bean id="anonFilter" class="com.newweb.common.security.filter.ShiroAnonymousFilter" />
 	
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	
@@ -38,7 +35,7 @@
 		<property name="realm" ref="myRealm" />
 	</bean>
 	
-	<bean id="myRealm" class="com.xuanwu.xcloud.web.security.ShiroDBRealm" >
+	<bean id="myRealm" class="com.newweb.common.security.ShiroDBRealm" >
 	</bean>
 	
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
@@ -49,4 +46,16 @@
 			</props>
 		</property>
 	</bean> -->
+
+	<!-- AOP式方法级权限检查 -->
+	<!-- Enable Shiro Annotations for Spring-configured beans. Only run after -->
+	<!-- the lifecycleBeanProcessor has run: -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+			depends-on="lifecycleBeanPostProcessor">
+		<property name="proxyTargetClass" value="true" />
+	</bean>
+	<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+
 </beans>

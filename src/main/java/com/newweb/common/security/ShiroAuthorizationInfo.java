@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.shiro.authz.AuthorizationInfo;
-import com.xuanwu.xcloud.web.entity.RolePermission;
 
 
 /**

@@ -16,71 +16,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 
 
 /**
- * 基于MyBatis的基本仓储的抽象实现
+ * 基于MyBatis的实体基本仓储的抽象实现
  * @author Jake
  * @Data 2016年1月17日
  * @Version 1.0.0
  */
-public abstract class AbstractEntityMapper<T extends IEntity, PK extends Serializable> implements IEntityMapper<T, PK> {
-
-	protected SqlSessionFactory sqlSessionFactory;
-
+public abstract class AbstractEntityMapper<T extends IEntity, PK extends Serializable> extends AbstractMapper<T> implements IEntityMapper<T, PK> {
 
 	@Override
 	public T get(PK id) {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne(fullSqlId("get"), id);
 		}
-	}
-
-	@Override
-	public int insert(T t) {
-		int count;
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			count = session.insert(fullSqlId("insert"), t);
-			session.commit(true);
-		}
-		return count;
-	}
-
-	@Override
-	public int insertSelective(T t) {
-		int count;
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			count = session.insert(fullSqlId("insertSelective"), t);
-			session.commit(true);
-		}
-		return count;
-	}
-
-	@Override
-	public int update(T t) {
-		int count = 0;
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			count = session.update(fullSqlId("update"), t);
-			session.commit(true);
-		}
-		return count;
-	}
-
-	@Override
-	public int updateSelective(T t) {
-		int count = 0;
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			count = session.update(fullSqlId("updateSelective"), t);
-			session.commit(true);
-		}
-		return count;
-	}
-
-	@Override
-	public int delete(PK id) {
-		int count = 0;
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			count = session.delete(fullSqlId("delete"), id);
-			session.commit(true);
-		}
-		return count;
 	}
 
 	@Override
@@ -111,17 +58,14 @@ public abstract class AbstractEntityMapper<T extends IEntity, PK extends Seriali
 		}
 	}
 
-
-	@Autowired
-	@Qualifier("sqlSessionFactory")
-	public void setSqlSessionFactory(SqlSessionFactory sqlSessionFactory) {
-		this.sqlSessionFactory = sqlSessionFactory;
-	}
-
-	protected abstract String namesapceForSqlId();
-
-	protected String fullSqlId(String sqlId) {
-		return namesapceForSqlId() + "." + sqlId;
+	@Override
+	public int delete(PK id) {
+		int count;
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			count = session.delete(fullSqlId("delete"), id);
+			session.commit(true);
+		}
+		return count;
 	}
 
 }
