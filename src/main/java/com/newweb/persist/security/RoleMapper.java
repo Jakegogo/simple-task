@@ -1,6 +1,6 @@
-package com.newweb.persist.user;
+package com.newweb.persist.security;
 
-import com.newweb.domain.user.Role;
+import com.newweb.domain.security.Role;
 
 public interface RoleMapper {
     int delete(Long roleId);

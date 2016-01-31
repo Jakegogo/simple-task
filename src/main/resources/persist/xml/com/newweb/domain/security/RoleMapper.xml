@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.newweb.persist.user.RoleMapper">
-  <resultMap id="BaseResultMap" type="com.newweb.domain.user.Role">
+<mapper namespace="com.newweb.persist.security.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.newweb.domain.security.Role">
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
     <result column="role_desc" jdbcType="VARCHAR" property="roleDesc" />
@@ -19,13 +19,13 @@
     delete from system_role
     where role_id = #{roleId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.newweb.domain.user.Role">
+  <insert id="insert" parameterType="com.newweb.domain.security.Role">
     insert into system_role (role_id, role_name, role_desc
       )
     values (#{roleId,jdbcType=BIGINT}, #{roleName,jdbcType=VARCHAR}, #{roleDesc,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.newweb.domain.user.Role">
+  <insert id="insertSelective" parameterType="com.newweb.domain.security.Role">
     insert into system_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
@@ -50,7 +50,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateSelective" parameterType="com.newweb.domain.user.Role">
+  <update id="updateSelective" parameterType="com.newweb.domain.security.Role">
     update system_role
     <set>
       <if test="roleName != null">
@@ -62,7 +62,7 @@
     </set>
     where role_id = #{roleId,jdbcType=BIGINT}
   </update>
-  <update id="update" parameterType="com.newweb.domain.user.Role">
+  <update id="update" parameterType="com.newweb.domain.security.Role">
     update system_role
     set role_name = #{roleName,jdbcType=VARCHAR},
       role_desc = #{roleDesc,jdbcType=VARCHAR}

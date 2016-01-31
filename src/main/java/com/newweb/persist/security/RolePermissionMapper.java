@@ -1,7 +1,7 @@
-package com.newweb.persist.user;
+package com.newweb.persist.security;
 
-import com.newweb.domain.user.RolePermission;
-import com.newweb.domain.user.RolePermissionKey;
+import com.newweb.domain.security.RolePermission;
+import com.newweb.domain.security.RolePermissionKey;
 
 public interface RolePermissionMapper {
     int delete(RolePermissionKey key);

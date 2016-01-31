@@ -1,8 +1,8 @@
-package com.newweb.persist.user.impl;
+package com.newweb.persist.security.impl;
 
 import com.newweb.common.persist.AbstractEntityMapper;
-import com.newweb.domain.user.Permission;
-import com.newweb.persist.user.PermissionMapper;
+import com.newweb.domain.security.Permission;
+import com.newweb.persist.security.PermissionMapper;
 import org.springframework.stereotype.Component;
 
 /**

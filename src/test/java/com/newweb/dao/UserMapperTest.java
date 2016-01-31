@@ -1,8 +1,8 @@
 package com.newweb.dao;
 
 import com.newweb.AbstractBaseTest;
-import com.newweb.domain.User;
-import com.newweb.persist.UserMapper;
+import com.newweb.domain.user.User;
+import com.newweb.persist.user.UserMapper;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

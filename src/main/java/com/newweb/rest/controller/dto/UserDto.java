@@ -1,4 +1,4 @@
-package com.newweb.controller.dto;
+package com.newweb.rest.controller.dto;
 
 /**
  * Created by Jake on 1/18 0018.

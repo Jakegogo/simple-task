@@ -1,4 +1,4 @@
-package com.newweb.server;
+package com.newweb.rest.server;
 
 import com.newweb.common.exception.handler.WebApplicationExceptionMapper;
 import org.glassfish.jersey.server.ResourceConfig;

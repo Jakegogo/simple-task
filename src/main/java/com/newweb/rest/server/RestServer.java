@@ -2,11 +2,10 @@
  * Copyright (c) 2015 by XuanWu Wireless Technology Co., Ltd. 
  *             All rights reserved                         
  */
-package com.newweb.server;
+package com.newweb.rest.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
 

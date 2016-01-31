@@ -1,7 +1,7 @@
-package com.newweb.persist.user;
+package com.newweb.persist.security;
 
-import com.newweb.domain.user.UserRole;
-import com.newweb.domain.user.UserRoleKey;
+import com.newweb.domain.security.UserRole;
+import com.newweb.domain.security.UserRoleKey;
 
 public interface UserRoleMapper {
     int delete(UserRoleKey key);

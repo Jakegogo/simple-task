@@ -98,12 +98,12 @@
         <table tableName="system_user" domainObjectName="user.User"
                           enableCountByExample="false" enableUpdateByExample="false"
                           enableDeleteByExample="false" enableSelectByExample="false"
-                          selectByExampleQueryId="false">
+                          selectByExampleQueryId="false" >
         <!--<columnRenamingRule searchString="^D_"
                             replaceString=""/>-->
         </table>
 
-        <table tableName="system_permission" domainObjectName="user.Permission"
+        <table tableName="system_permission" domainObjectName="security.Permission"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false" >
@@ -111,7 +111,7 @@
                                 replaceString=""/>-->
         </table>
 
-        <table tableName="system_role" domainObjectName="user.Role"
+        <table tableName="system_role" domainObjectName="security.Role"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false" >
@@ -119,7 +119,7 @@
                                 replaceString=""/>-->
         </table>
 
-        <table tableName="system_user_role" domainObjectName="user.UserRole"
+        <table tableName="system_user_role" domainObjectName="security.UserRole"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">
@@ -127,7 +127,7 @@
                                 replaceString=""/>-->
         </table>
 
-        <table tableName="system_role_permission" domainObjectName="user.RolePermission"
+        <table tableName="system_role_permission" domainObjectName="security.RolePermission"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

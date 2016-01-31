@@ -1,8 +1,8 @@
-package com.newweb.controller.dto.assembler;
+package com.newweb.rest.controller.dto.assembler;
 
 import com.newweb.common.assembler.AbstractAssembler;
-import com.newweb.controller.dto.UserDto;
-import com.newweb.domain.User;
+import com.newweb.rest.controller.dto.UserDto;
+import com.newweb.domain.user.User;
 
 /**
  * Created by Jake on 1/18 0018.

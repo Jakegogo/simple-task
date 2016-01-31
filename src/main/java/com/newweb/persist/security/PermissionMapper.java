@@ -1,6 +1,6 @@
-package com.newweb.persist.user;
+package com.newweb.persist.security;
 
-import com.newweb.domain.user.Permission;
+import com.newweb.domain.security.Permission;
 
 public interface PermissionMapper {
     int delete(Long permissionId);

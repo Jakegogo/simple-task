@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.newweb.persist.user.UserRoleMapper">
-  <resultMap id="BaseResultMap" type="com.newweb.domain.user.UserRole">
+<mapper namespace="com.newweb.persist.security.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.newweb.domain.security.UserRole">
     <id column="user_id" jdbcType="BIGINT" property="userId" />
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
     <result column="user_role_desc" jdbcType="VARCHAR" property="userRoleDesc" />
@@ -9,25 +9,25 @@
   <sql id="Base_Column_List">
     user_id, role_id, user_role_desc
   </sql>
-  <select id="get" parameterType="com.newweb.domain.user.UserRoleKey" resultMap="BaseResultMap">
+  <select id="get" parameterType="com.newweb.domain.security.UserRoleKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from system_user_role
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </select>
-  <delete id="delete" parameterType="com.newweb.domain.user.UserRoleKey">
+  <delete id="delete" parameterType="com.newweb.domain.security.UserRoleKey">
     delete from system_user_role
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.newweb.domain.user.UserRole">
+  <insert id="insert" parameterType="com.newweb.domain.security.UserRole">
     insert into system_user_role (user_id, role_id, user_role_desc
       )
     values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{userRoleDesc,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.newweb.domain.user.UserRole">
+  <insert id="insertSelective" parameterType="com.newweb.domain.security.UserRole">
     insert into system_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="userId != null">
@@ -52,7 +52,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateSelective" parameterType="com.newweb.domain.user.UserRole">
+  <update id="updateSelective" parameterType="com.newweb.domain.security.UserRole">
     update system_user_role
     <set>
       <if test="userRoleDesc != null">
@@ -62,7 +62,7 @@
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </update>
-  <update id="update" parameterType="com.newweb.domain.user.UserRole">
+  <update id="update" parameterType="com.newweb.domain.security.UserRole">
     update system_user_role
     set user_role_desc = #{userRoleDesc,jdbcType=VARCHAR}
     where user_id = #{userId,jdbcType=BIGINT}

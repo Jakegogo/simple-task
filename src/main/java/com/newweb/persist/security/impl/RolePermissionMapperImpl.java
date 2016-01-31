@@ -1,9 +1,9 @@
-package com.newweb.persist.user.impl;
+package com.newweb.persist.security.impl;
 
 import com.newweb.common.persist.AbstractMapper;
-import com.newweb.domain.user.RolePermission;
-import com.newweb.domain.user.RolePermissionKey;
-import com.newweb.persist.user.RolePermissionMapper;
+import com.newweb.domain.security.RolePermission;
+import com.newweb.domain.security.RolePermissionKey;
+import com.newweb.persist.security.RolePermissionMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 

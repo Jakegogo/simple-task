@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.newweb.persist.user.RolePermissionMapper">
-  <resultMap id="BaseResultMap" type="com.newweb.domain.user.RolePermission">
+<mapper namespace="com.newweb.persist.security.RolePermissionMapper">
+  <resultMap id="BaseResultMap" type="com.newweb.domain.security.RolePermission">
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
     <id column="permission_id" jdbcType="BIGINT" property="permissionId" />
     <result column="role_permission_desc" jdbcType="VARCHAR" property="rolePermissionDesc" />
@@ -9,25 +9,25 @@
   <sql id="Base_Column_List">
     role_id, permission_id, role_permission_desc
   </sql>
-  <select id="get" parameterType="com.newweb.domain.user.RolePermissionKey" resultMap="BaseResultMap">
+  <select id="get" parameterType="com.newweb.domain.security.RolePermissionKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from system_role_permission
     where role_id = #{roleId,jdbcType=BIGINT}
       and permission_id = #{permissionId,jdbcType=BIGINT}
   </select>
-  <delete id="delete" parameterType="com.newweb.domain.user.RolePermissionKey">
+  <delete id="delete" parameterType="com.newweb.domain.security.RolePermissionKey">
     delete from system_role_permission
     where role_id = #{roleId,jdbcType=BIGINT}
       and permission_id = #{permissionId,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.newweb.domain.user.RolePermission">
+  <insert id="insert" parameterType="com.newweb.domain.security.RolePermission">
     insert into system_role_permission (role_id, permission_id, role_permission_desc
       )
     values (#{roleId,jdbcType=BIGINT}, #{permissionId,jdbcType=BIGINT}, #{rolePermissionDesc,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.newweb.domain.user.RolePermission">
+  <insert id="insertSelective" parameterType="com.newweb.domain.security.RolePermission">
     insert into system_role_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="roleId != null">
@@ -52,7 +52,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateSelective" parameterType="com.newweb.domain.user.RolePermission">
+  <update id="updateSelective" parameterType="com.newweb.domain.security.RolePermission">
     update system_role_permission
     <set>
       <if test="rolePermissionDesc != null">
@@ -62,7 +62,7 @@
     where role_id = #{roleId,jdbcType=BIGINT}
       and permission_id = #{permissionId,jdbcType=BIGINT}
   </update>
-  <update id="update" parameterType="com.newweb.domain.user.RolePermission">
+  <update id="update" parameterType="com.newweb.domain.security.RolePermission">
     update system_role_permission
     set role_permission_desc = #{rolePermissionDesc,jdbcType=VARCHAR}
     where role_id = #{roleId,jdbcType=BIGINT}

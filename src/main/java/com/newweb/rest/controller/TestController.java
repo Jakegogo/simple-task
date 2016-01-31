@@ -1,8 +1,8 @@
-package com.newweb.controller;
+package com.newweb.rest.controller;
 
 import com.newweb.common.exception.EbaseRuntimeException;
 import com.newweb.common.util.rest.RestResult;
-import com.newweb.persist.UserMapper;
+import com.newweb.persist.user.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

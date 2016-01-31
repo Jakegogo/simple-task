@@ -1,4 +1,4 @@
-package com.newweb.domain.user;
+package com.newweb.domain.security;
 
 import com.newweb.common.domain.IEntity;
 
