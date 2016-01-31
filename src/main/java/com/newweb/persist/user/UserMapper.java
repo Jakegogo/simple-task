@@ -1,6 +1,6 @@
-package com.newweb.persist;
+package com.newweb.persist.user;
 
-import com.newweb.domain.User;
+import com.newweb.domain.user.User;
 
 public interface UserMapper {
     int delete(String id);

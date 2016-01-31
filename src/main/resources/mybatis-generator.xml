@@ -48,7 +48,7 @@
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
-        <sqlMapGenerator targetPackage="persist.com.newweb.domain.xml" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="persist.xml.com.newweb.domain" targetProject="src/main/resources">
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
 
@@ -95,7 +95,7 @@
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
 
-        <table tableName="system_user" domainObjectName="User"
+        <table tableName="system_user" domainObjectName="user.User"
                           enableCountByExample="false" enableUpdateByExample="false"
                           enableDeleteByExample="false" enableSelectByExample="false"
                           selectByExampleQueryId="false">
@@ -103,7 +103,7 @@
                             replaceString=""/>-->
         </table>
 
-        <table tableName="system_permission" domainObjectName="Permission"
+        <table tableName="system_permission" domainObjectName="user.Permission"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false" >
@@ -111,7 +111,23 @@
                                 replaceString=""/>-->
         </table>
 
-        <table tableName="system_user_permission" domainObjectName="User_Permission"
+        <table tableName="system_role" domainObjectName="user.Role"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false" >
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+
+        <table tableName="system_user_role" domainObjectName="user.UserRole"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
+
+        <table tableName="system_role_permission" domainObjectName="user.RolePermission"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false">

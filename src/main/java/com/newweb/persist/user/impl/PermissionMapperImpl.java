@@ -1,8 +1,8 @@
-package com.newweb.persist.impl;
+package com.newweb.persist.user.impl;
 
 import com.newweb.common.persist.AbstractEntityMapper;
-import com.newweb.domain.Permission;
-import com.newweb.persist.PermissionMapper;
+import com.newweb.domain.user.Permission;
+import com.newweb.persist.user.PermissionMapper;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,4 +16,5 @@ public class PermissionMapperImpl extends AbstractEntityMapper<Permission, Long>
     protected String namesapceForSqlId() {
         return "com.newweb.persist.PermissionMapper";
     }
+
 }

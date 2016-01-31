@@ -1,4 +1,4 @@
-package com.newweb.domain;
+package com.newweb.domain.user;
 
 import com.newweb.common.domain.IEntity;
 
@@ -21,6 +21,11 @@ public class Permission implements IEntity {
      *  权限地址
      */
     private String permissionUrl;
+
+    /**
+     *  
+     */
+    private String permissionDesc;
 
     private static final long serialVersionUID = 1L;
 
@@ -76,6 +81,24 @@ public class Permission implements IEntity {
      */
     public void setPermissionUrl(String permissionUrl) {
         this.permissionUrl = permissionUrl == null ? null : permissionUrl.trim();
+    }
+
+    /**
+     * 获取字段 system_permission.permission_desc
+     *
+     * @return the value of system_permission.permission_desc
+     */
+    public String getPermissionDesc() {
+        return permissionDesc;
+    }
+
+    /**
+     * 设置字段 system_permission.permission_desc
+     *
+     * @param permissionDesc the value for system_permission.permission_desc
+     */
+    public void setPermissionDesc(String permissionDesc) {
+        this.permissionDesc = permissionDesc == null ? null : permissionDesc.trim();
     }
 
     /**

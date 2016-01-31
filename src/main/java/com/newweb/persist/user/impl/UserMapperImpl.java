@@ -1,8 +1,8 @@
-package com.newweb.persist.impl;
+package com.newweb.persist.user.impl;
 
 import com.newweb.common.persist.AbstractEntityMapper;
-import com.newweb.domain.User;
-import com.newweb.persist.UserMapper;
+import com.newweb.domain.user.User;
+import com.newweb.persist.user.UserMapper;
 import org.springframework.stereotype.Component;
 
 /**
