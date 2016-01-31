@@ -8,6 +8,8 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="persist/com/newweb/domain/xml/EntityMapper.xml" />
+		<mapper resource="persist/com/newweb/domain/xml/UserMapper.xml" />
+		<mapper resource="persist/com/newweb/domain/xml/User_PermissionMapper.xml" />
+		<mapper resource="persist/com/newweb/domain/xml/PermissionMapper.xml" />
 	</mappers>
 </configuration>

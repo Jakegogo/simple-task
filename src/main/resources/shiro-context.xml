@@ -27,7 +27,7 @@
 	</bean>
 	
 	<bean id="anonFilter" class="com.newweb.common.security.filter.ShiroAnonymousFilter" />
-	
+
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">

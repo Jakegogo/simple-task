@@ -2,6 +2,8 @@ package com.newweb.controller;
 
 import com.newweb.common.exception.EbaseRuntimeException;
 import com.newweb.common.util.rest.RestResult;
+import com.newweb.persist.UserMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.ws.rs.GET;
@@ -16,9 +18,12 @@ import javax.ws.rs.core.Response;
 @Path("testcontroller")
 public class TestController {
 
+    @Autowired
+    private UserMapper userMapper;
+
     @GET
     public Response getdefined(){
-        return RestResult.success();
+        return RestResult.success(userMapper.get("312312312"));
     }
 
     @GET

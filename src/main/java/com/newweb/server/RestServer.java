@@ -16,7 +16,6 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan(basePackages="com.newweb")
 @ImportResource({"classpath*:applicationContext.xml"})
 public class RestServer {
 	public static void main(String[] args) {
