@@ -80,5 +80,4 @@
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </update>
 
-
 </mapper>

@@ -23,7 +23,7 @@ public class TestController {
 
     @GET
     public Response getdefined(){
-        return RestResult.success(userMapper.get("312312312"));
+        return RestResult.success(userMapper.get("1111111111111111111"));
     }
 
     @GET

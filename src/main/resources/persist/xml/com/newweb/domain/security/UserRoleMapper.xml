@@ -68,10 +68,12 @@
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </update>
-  <select id="findRoles" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from system_user_role
-    where user_id = (select user_id from system_user where user_name = #{username,jdbcType=CHAR})
+  <select id="findRoles" parameterType="java.lang.String" resultType="java.lang.String">
+    select role_name from system_role a right join (
+        select
+          role_id
+        from system_user_role
+        where user_id = (select user_id from system_user where user_name = #{username,jdbcType=CHAR})
+      ) b on a.role_id = b.role_id
   </select>
 </mapper>

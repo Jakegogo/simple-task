@@ -18,6 +18,7 @@ public class WebApplicationExceptionMapper implements
 
   @Override
   public Response toResponse(Throwable e) {
+    e.printStackTrace();
     // 自定义业务异常
     if (e instanceof EbaseRuntimeException) {
       return RestResult.failure(((EbaseRuntimeException) e).getErrorCode(), e.getMessage());

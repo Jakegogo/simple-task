@@ -82,14 +82,6 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		return false;
 	}
 
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean isPermitted(PrincipalCollection principals, org.apache.shiro.authz.Permission permission) {
-		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
-		Permission targetPerm = (Permission) permission;
-		return isPermitted(principals, targetPerm.getPermissionUrl());
-	}
-
 	/**
 	 * 检查空
 	 * @param reference 对象
