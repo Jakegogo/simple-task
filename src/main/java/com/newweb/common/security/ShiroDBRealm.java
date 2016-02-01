@@ -8,6 +8,8 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.AntPathMatcher;
+import org.apache.shiro.util.PatternMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Set;
@@ -20,31 +22,6 @@ public class ShiroDBRealm extends AuthorizingRealm {
 
 	@Autowired
 	protected UserService userService;
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean isPermitted(PrincipalCollection principals, String permission) {
-		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
-		if (info.getStringPermissions().contains(permission)) {
-			return true;
-		}
-
-		Set<String> permissions = info.getStringPermissions();
-		for (String permiss : permissions) {
-			if (permission.startsWith(permiss)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public boolean isPermitted(PrincipalCollection principals, org.apache.shiro.authz.Permission permission) {
-		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
-		Permission targetPerm = (Permission) permission;
-		return isPermitted(principals, targetPerm.getPermissionUrl());
-	}
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -77,6 +54,47 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		return authenticationInfo;
 	}
 
+	private PatternMatcher pathMatcher = new AntPathMatcher();
+
+	public PatternMatcher getPathMatcher() {
+		return this.pathMatcher;
+	}
+
+	protected boolean pathMatches(String pattern, String path) {
+		PatternMatcher pathMatcher = this.getPathMatcher();
+		return pathMatcher.matches(pattern, path);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public boolean isPermitted(PrincipalCollection principals, String permission) {
+		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
+		if (info.getStringPermissions().contains(permission)) {
+			return true;
+		}
+
+		Set<String> permissions = info.getStringPermissions();
+		for (String permiss : permissions) {
+			if (pathMatches(permiss, permission)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
+	public boolean isPermitted(PrincipalCollection principals, org.apache.shiro.authz.Permission permission) {
+		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
+		Permission targetPerm = (Permission) permission;
+		return isPermitted(principals, targetPerm.getPermissionUrl());
+	}
+
+	/**
+	 * 检查空
+	 * @param reference 对象
+	 * @param message 抛出异常的提示
+	 */
 	private void checkNotNull(Object reference, String message) {
 		if (reference == null) {
 			throw new AuthenticationException(message);
