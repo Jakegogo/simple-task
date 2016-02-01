@@ -25,29 +25,27 @@ public class ShiroUrlBasedFilter extends AuthorizationFilter {
 	protected boolean isAccessAllowed(ServletRequest req, ServletResponse resp, Object mappedValue) throws Exception {
 		HttpServletRequest hreq = (HttpServletRequest) req;
 		HttpServletResponse hresp = (HttpServletResponse) resp;
-		if (SessionUtil.getCurUser() == null && !hreq.getRequestURI().endsWith("/")) {
-			// Session TimeOut!
+//		if (SessionUtil.getCurUser() == null && !hreq.getRequestURI().endsWith("/")) {
+//			// Session TimeOut!
+//			hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "login");
+//			return false;
+//		}
+
+		Subject subject = SecurityUtils.getSubject();
+		if (!subject.isAuthenticated()) {
 			hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "login");
 			return false;
 		}
 
-		boolean isPermitted = false;
-		Subject subject = SecurityUtils.getSubject();
-		if (subject.isAuthenticated()) {
-//			RolePermission perm = new RolePermission();
-//			String url = hreq.getServletPath();
-//			if (StringUtils.isBlank(url)) {
-//				url = hreq.getPathInfo();// fixed for IBM WebSphere
-//			}
-//			perm.setBaseUrl(url);
-//			isPermitted = subject.isPermitted(perm);
-//			if (!isPermitted) {
-//				hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "unauthorized");
-//			}
-		} else {
-			hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "login");
+		String url = hreq.getServletPath();
+		if (StringUtils.isBlank(url)) {
+			url = hreq.getPathInfo();// fixed for IBM WebSphere
 		}
-		return isPermitted;
+		if (subject.isPermitted(url)) {
+			return true;
+		}
+		hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "unauthorized");
+		return false;
 	}
 
 	@Override

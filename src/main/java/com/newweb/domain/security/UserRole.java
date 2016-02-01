@@ -8,7 +8,7 @@ import com.newweb.common.domain.IEntity;
  */
 public class UserRole extends UserRoleKey implements IEntity {
     /**
-     *  
+     *  用户角色描述
      */
     private String userRoleDesc;
 

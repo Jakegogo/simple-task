@@ -9,8 +9,13 @@
 		<property name="loginUrl" value="/login" />
 		<property name="filters">
 			<map>
-            	<entry key="urlFilter" value-ref="urlFilter"/>
-            	<entry key="anonFilter" value-ref="anonFilter"/>
+            	<entry key="urlFilter">
+					<bean id="urlFilter" class="com.newweb.common.security.filter.ShiroUrlBasedFilter">
+					</bean>
+				</entry>
+            	<entry key="anonFilter">
+					<bean id="anonFilter" class="com.newweb.common.security.filter.ShiroAnonymousFilter" />
+				</entry>
         	</map>
 		</property>
 		<property name="filterChainDefinitions">
@@ -22,11 +27,6 @@
 			</value>
 		</property>
 	</bean>
-	
-	<bean id="urlFilter" class="com.newweb.common.security.filter.ShiroUrlBasedFilter">
-	</bean>
-	
-	<bean id="anonFilter" class="com.newweb.common.security.filter.ShiroAnonymousFilter" />
 
 	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager" />
 	

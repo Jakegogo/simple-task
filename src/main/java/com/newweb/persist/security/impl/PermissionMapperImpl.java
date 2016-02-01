@@ -14,7 +14,7 @@ public class PermissionMapperImpl extends AbstractEntityMapper<Permission, Long>
 
     @Override
     protected String namesapceForSqlId() {
-        return "com.newweb.persist.PermissionMapper";
+        return "com.newweb.persist.security.PermissionMapper";
     }
 
 }

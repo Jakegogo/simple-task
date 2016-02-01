@@ -17,10 +17,11 @@ public class ShiroAnonymousFilter extends PathMatchingFilter {
 	@Override
 	protected boolean preHandle(ServletRequest req, ServletResponse resp)
 			throws Exception {
-		HttpServletResponse hresp = (HttpServletResponse)resp;
 		Subject subject = SecurityUtils.getSubject();
 		if(subject.isAuthenticated())
 			return true;
+
+		HttpServletResponse hresp = (HttpServletResponse)resp;
 		hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "login");
 		return true;
 	}

@@ -8,7 +8,7 @@ import com.newweb.common.domain.IEntity;
  */
 public class RolePermission extends RolePermissionKey implements IEntity {
     /**
-     *  
+     *  角色权限描述
      */
     private String rolePermissionDesc;
 

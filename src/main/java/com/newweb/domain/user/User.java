@@ -15,7 +15,7 @@ public class User implements IEntity {
     /**
      *  用户ID
      */
-    private Long userId;
+    private Integer userId;
 
     /**
      *  用户名
@@ -26,6 +26,11 @@ public class User implements IEntity {
      *  密码
      */
     private String userPassword;
+
+    /**
+     *  
+     */
+    private Boolean userLocked;
 
     private static final long serialVersionUID = 1L;
 
@@ -52,7 +57,7 @@ public class User implements IEntity {
      *
      * @return the value of system_user.user_id
      */
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -61,7 +66,7 @@ public class User implements IEntity {
      *
      * @param userId the value for system_user.user_id
      */
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -99,5 +104,23 @@ public class User implements IEntity {
      */
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword == null ? null : userPassword.trim();
+    }
+
+    /**
+     * 获取字段 system_user.user_locked
+     *
+     * @return the value of system_user.user_locked
+     */
+    public Boolean getUserLocked() {
+        return userLocked;
+    }
+
+    /**
+     * 设置字段 system_user.user_locked
+     *
+     * @param userLocked the value for system_user.user_locked
+     */
+    public void setUserLocked(Boolean userLocked) {
+        this.userLocked = userLocked;
     }
 }

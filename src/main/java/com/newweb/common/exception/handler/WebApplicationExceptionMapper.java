@@ -14,10 +14,10 @@ import javax.ws.rs.ext.Provider;
  */
 @Provider
 public class WebApplicationExceptionMapper implements
-        ExceptionMapper<Exception> {
+        ExceptionMapper<Throwable> {
 
   @Override
-  public Response toResponse(Exception e) {
+  public Response toResponse(Throwable e) {
     // 自定义业务异常
     if (e instanceof EbaseRuntimeException) {
       return RestResult.failure(((EbaseRuntimeException) e).getErrorCode(), e.getMessage());

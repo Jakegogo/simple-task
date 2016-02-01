@@ -68,4 +68,12 @@
     where role_id = #{roleId,jdbcType=BIGINT}
       and permission_id = #{permissionId,jdbcType=BIGINT}
   </update>
+  <select id="findPermissions" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_role_permission a where exists(
+      select 1 from system_user_role b
+      where b.user_id = (select user_id from system_user where user_name = #{username,jdbcType=CHAR})
+    )
+  </select>
 </mapper>

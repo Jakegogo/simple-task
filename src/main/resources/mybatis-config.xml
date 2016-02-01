@@ -8,10 +8,10 @@
 	</typeAliases>
 
 	<mappers>
-		<mapper resource="persist/xml/com/newweb/domain/user/PermissionMapper.xml" />
-		<mapper resource="persist/xml/com/newweb/domain/user/RoleMapper.xml" />
-		<mapper resource="persist/xml/com/newweb/domain/user/RolePermissionMapper.xml" />
+		<mapper resource="persist/xml/com/newweb/domain/security/PermissionMapper.xml" />
+		<mapper resource="persist/xml/com/newweb/domain/security/RoleMapper.xml" />
+		<mapper resource="persist/xml/com/newweb/domain/security/RolePermissionMapper.xml" />
+		<mapper resource="persist/xml/com/newweb/domain/security/UserRoleMapper.xml" />
 		<mapper resource="persist/xml/com/newweb/domain/user/UserMapper.xml" />
-		<mapper resource="persist/xml/com/newweb/domain/user/UserRoleMapper.xml" />
 	</mappers>
 </configuration>

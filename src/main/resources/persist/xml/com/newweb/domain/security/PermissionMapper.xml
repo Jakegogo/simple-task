@@ -79,4 +79,6 @@
       permission_desc = #{permissionDesc,jdbcType=VARCHAR}
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </update>
+
+
 </mapper>

@@ -18,7 +18,7 @@ public class Role implements IEntity {
     private String roleName;
 
     /**
-     *  描述
+     *  角色描述
      */
     private String roleDesc;
 

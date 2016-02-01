@@ -23,7 +23,7 @@ public class Permission implements IEntity {
     private String permissionUrl;
 
     /**
-     *  
+     *  权限描述
      */
     private String permissionDesc;
 
