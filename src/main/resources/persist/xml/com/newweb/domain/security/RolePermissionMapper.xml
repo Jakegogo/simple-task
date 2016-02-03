@@ -70,7 +70,7 @@
   </update>
 
   <select id="findPermissions" parameterType="java.lang.String" resultType="java.lang.String">
-    select permission_url from system_permission a right join (
+    select permission_name from system_permission a right join (
     select
     permission_id
     from system_role_permission a where exists(

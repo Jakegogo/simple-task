@@ -4,12 +4,10 @@
   <resultMap id="BaseResultMap" type="com.newweb.domain.security.Permission">
     <id column="permission_id" jdbcType="BIGINT" property="permissionId" />
     <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
-    <result column="permission_url" jdbcType="VARCHAR" property="permissionUrl" />
-    <result column="permission_rest" jdbcType="VARCHAR" property="permissionRest" />
     <result column="permission_desc" jdbcType="VARCHAR" property="permissionDesc" />
   </resultMap>
   <sql id="Base_Column_List">
-    permission_id, permission_name, permission_url, permission_rest, permission_desc
+    permission_id, permission_name, permission_desc
   </sql>
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -22,10 +20,10 @@
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </delete>
   <insert id="insert" parameterType="com.newweb.domain.security.Permission">
-    insert into system_permission (permission_id, permission_name, permission_url, 
-      permission_rest, permission_desc)
-    values (#{permissionId,jdbcType=BIGINT}, #{permissionName,jdbcType=VARCHAR}, #{permissionUrl,jdbcType=VARCHAR}, 
-      #{permissionRest,jdbcType=VARCHAR}, #{permissionDesc,jdbcType=VARCHAR})
+    insert into system_permission (permission_id, permission_name, permission_desc
+      )
+    values (#{permissionId,jdbcType=BIGINT}, #{permissionName,jdbcType=VARCHAR}, #{permissionDesc,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.newweb.domain.security.Permission">
     insert into system_permission
@@ -35,12 +33,6 @@
       </if>
       <if test="permissionName != null">
         permission_name,
-      </if>
-      <if test="permissionUrl != null">
-        permission_url,
-      </if>
-      <if test="permissionRest != null">
-        permission_rest,
       </if>
       <if test="permissionDesc != null">
         permission_desc,
@@ -53,12 +45,6 @@
       <if test="permissionName != null">
         #{permissionName,jdbcType=VARCHAR},
       </if>
-      <if test="permissionUrl != null">
-        #{permissionUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="permissionRest != null">
-        #{permissionRest,jdbcType=VARCHAR},
-      </if>
       <if test="permissionDesc != null">
         #{permissionDesc,jdbcType=VARCHAR},
       </if>
@@ -70,12 +56,6 @@
       <if test="permissionName != null">
         permission_name = #{permissionName,jdbcType=VARCHAR},
       </if>
-      <if test="permissionUrl != null">
-        permission_url = #{permissionUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="permissionRest != null">
-        permission_rest = #{permissionRest,jdbcType=VARCHAR},
-      </if>
       <if test="permissionDesc != null">
         permission_desc = #{permissionDesc,jdbcType=VARCHAR},
       </if>
@@ -85,8 +65,6 @@
   <update id="update" parameterType="com.newweb.domain.security.Permission">
     update system_permission
     set permission_name = #{permissionName,jdbcType=VARCHAR},
-      permission_url = #{permissionUrl,jdbcType=VARCHAR},
-      permission_rest = #{permissionRest,jdbcType=VARCHAR},
       permission_desc = #{permissionDesc,jdbcType=VARCHAR}
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </update>

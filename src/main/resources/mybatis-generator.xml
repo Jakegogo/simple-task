@@ -95,70 +95,78 @@
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
 
-        <table tableName="system_user" domainObjectName="user.User"
-                          enableCountByExample="false" enableUpdateByExample="false"
-                          enableDeleteByExample="false" enableSelectByExample="false"
-                          selectByExampleQueryId="false" >
-        <!--<columnRenamingRule searchString="^D_"
-                            replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_user" domainObjectName="user.User"-->
+                          <!--enableCountByExample="false" enableUpdateByExample="false"-->
+                          <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+                          <!--selectByExampleQueryId="false" >-->
+        <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                            <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
-        <table tableName="system_permission" domainObjectName="security.Permission"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false" >
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_permission" domainObjectName="security.Permission"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false" >-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
-        <table tableName="system_role" domainObjectName="security.Role"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false" >
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_role" domainObjectName="security.Role"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false" >-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
-        <table tableName="system_user_role" domainObjectName="security.UserRole"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_user_role" domainObjectName="security.UserRole"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
-        <table tableName="system_role_permission" domainObjectName="security.RolePermission"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_role_permission" domainObjectName="security.RolePermission"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
 
-        <table tableName="system_group" domainObjectName="security.Group"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_group" domainObjectName="security.Group"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
-        <table tableName="system_user_group" domainObjectName="security.UserGroup"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_user_group" domainObjectName="security.UserGroup"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
-        <table tableName="system_menu" domainObjectName="system.Menu"
-               enableCountByExample="false" enableUpdateByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               selectByExampleQueryId="false">
-            <!--<columnRenamingRule searchString="^D_"
-                                replaceString=""/>-->
-        </table>
+        <!--<table tableName="system_menu" domainObjectName="system.Menu"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
+
+        <!--<table tableName="system_permission_element" domainObjectName="security.PermissionElement"-->
+               <!--enableCountByExample="false" enableUpdateByExample="false"-->
+               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
+               <!--selectByExampleQueryId="false">-->
+            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
+                                <!--replaceString=""/>&ndash;&gt;-->
+        <!--</table>-->
 
     </context>
 </generatorConfiguration>

@@ -18,16 +18,6 @@ public class Permission implements IEntity {
     private String permissionName;
 
     /**
-     *  权限地址
-     */
-    private String permissionUrl;
-
-    /**
-     *  rest风格权限值
-     */
-    private String permissionRest;
-
-    /**
      *  权限描述
      */
     private String permissionDesc;
@@ -68,42 +58,6 @@ public class Permission implements IEntity {
      */
     public void setPermissionName(String permissionName) {
         this.permissionName = permissionName == null ? null : permissionName.trim();
-    }
-
-    /**
-     * 获取字段 system_permission.permission_url
-     *
-     * @return the value of system_permission.permission_url
-     */
-    public String getPermissionUrl() {
-        return permissionUrl;
-    }
-
-    /**
-     * 设置字段 system_permission.permission_url
-     *
-     * @param permissionUrl the value for system_permission.permission_url
-     */
-    public void setPermissionUrl(String permissionUrl) {
-        this.permissionUrl = permissionUrl == null ? null : permissionUrl.trim();
-    }
-
-    /**
-     * 获取字段 system_permission.permission_rest
-     *
-     * @return the value of system_permission.permission_rest
-     */
-    public String getPermissionRest() {
-        return permissionRest;
-    }
-
-    /**
-     * 设置字段 system_permission.permission_rest
-     *
-     * @param permissionRest the value for system_permission.permission_rest
-     */
-    public void setPermissionRest(String permissionRest) {
-        this.permissionRest = permissionRest == null ? null : permissionRest.trim();
     }
 
     /**

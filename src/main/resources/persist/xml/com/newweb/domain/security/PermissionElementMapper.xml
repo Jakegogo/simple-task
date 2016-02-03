@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newweb.persist.security.PermissionElementMapper">
+  <resultMap id="BaseResultMap" type="com.newweb.domain.security.PermissionElement">
+    <id column="element_id" jdbcType="BIGINT" property="elementId" />
+    <result column="element_name" jdbcType="VARCHAR" property="elementName" />
+    <result column="permission_id" jdbcType="BIGINT" property="permissionId" />
+    <result column="element_type" jdbcType="INTEGER" property="elementType" />
+    <result column="element_key" jdbcType="VARCHAR" property="elementKey" />
+    <result column="element_value" jdbcType="VARCHAR" property="elementValue" />
+    <result column="element_extra" jdbcType="VARCHAR" property="elementExtra" />
+    <result column="element_desc" jdbcType="VARCHAR" property="elementDesc" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    element_id, element_name, permission_id, element_type, element_key, element_value, 
+    element_extra, element_desc
+  </sql>
+  <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_permission_element
+    where element_id = #{elementId,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from system_permission_element
+    where element_id = #{elementId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.newweb.domain.security.PermissionElement">
+    insert into system_permission_element (element_id, element_name, permission_id, 
+      element_type, element_key, element_value, 
+      element_extra, element_desc)
+    values (#{elementId,jdbcType=BIGINT}, #{elementName,jdbcType=VARCHAR}, #{permissionId,jdbcType=BIGINT}, 
+      #{elementType,jdbcType=INTEGER}, #{elementKey,jdbcType=VARCHAR}, #{elementValue,jdbcType=VARCHAR}, 
+      #{elementExtra,jdbcType=VARCHAR}, #{elementDesc,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.newweb.domain.security.PermissionElement">
+    insert into system_permission_element
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="elementId != null">
+        element_id,
+      </if>
+      <if test="elementName != null">
+        element_name,
+      </if>
+      <if test="permissionId != null">
+        permission_id,
+      </if>
+      <if test="elementType != null">
+        element_type,
+      </if>
+      <if test="elementKey != null">
+        element_key,
+      </if>
+      <if test="elementValue != null">
+        element_value,
+      </if>
+      <if test="elementExtra != null">
+        element_extra,
+      </if>
+      <if test="elementDesc != null">
+        element_desc,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="elementId != null">
+        #{elementId,jdbcType=BIGINT},
+      </if>
+      <if test="elementName != null">
+        #{elementName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null">
+        #{permissionId,jdbcType=BIGINT},
+      </if>
+      <if test="elementType != null">
+        #{elementType,jdbcType=INTEGER},
+      </if>
+      <if test="elementKey != null">
+        #{elementKey,jdbcType=VARCHAR},
+      </if>
+      <if test="elementValue != null">
+        #{elementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="elementExtra != null">
+        #{elementExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="elementDesc != null">
+        #{elementDesc,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateSelective" parameterType="com.newweb.domain.security.PermissionElement">
+    update system_permission_element
+    <set>
+      <if test="elementName != null">
+        element_name = #{elementName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionId != null">
+        permission_id = #{permissionId,jdbcType=BIGINT},
+      </if>
+      <if test="elementType != null">
+        element_type = #{elementType,jdbcType=INTEGER},
+      </if>
+      <if test="elementKey != null">
+        element_key = #{elementKey,jdbcType=VARCHAR},
+      </if>
+      <if test="elementValue != null">
+        element_value = #{elementValue,jdbcType=VARCHAR},
+      </if>
+      <if test="elementExtra != null">
+        element_extra = #{elementExtra,jdbcType=VARCHAR},
+      </if>
+      <if test="elementDesc != null">
+        element_desc = #{elementDesc,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where element_id = #{elementId,jdbcType=BIGINT}
+  </update>
+  <update id="update" parameterType="com.newweb.domain.security.PermissionElement">
+    update system_permission_element
+    set element_name = #{elementName,jdbcType=VARCHAR},
+      permission_id = #{permissionId,jdbcType=BIGINT},
+      element_type = #{elementType,jdbcType=INTEGER},
+      element_key = #{elementKey,jdbcType=VARCHAR},
+      element_value = #{elementValue,jdbcType=VARCHAR},
+      element_extra = #{elementExtra,jdbcType=VARCHAR},
+      element_desc = #{elementDesc,jdbcType=VARCHAR}
+    where element_id = #{elementId,jdbcType=BIGINT}
+  </update>
+</mapper>

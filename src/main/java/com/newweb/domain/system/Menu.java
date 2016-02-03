@@ -8,27 +8,22 @@ import com.newweb.common.domain.IEntity;
  */
 public class Menu implements IEntity {
     /**
-     *  
+     *  菜单ID
      */
     private Long menuId;
 
     /**
-     *  
+     *  权限元素ID
      */
-    private Long permissionId;
+    private Long permissionElementId;
 
     /**
-     *  
+     *  菜单名称
      */
     private String menuName;
 
     /**
-     *  
-     */
-    private String menuUrl;
-
-    /**
-     *  
+     *  菜单注释
      */
     private String menuDesc;
 
@@ -53,21 +48,21 @@ public class Menu implements IEntity {
     }
 
     /**
-     * 获取字段 system_menu.permission_id
+     * 获取字段 system_menu.permission_element_id
      *
-     * @return the value of system_menu.permission_id
+     * @return the value of system_menu.permission_element_id
      */
-    public Long getPermissionId() {
-        return permissionId;
+    public Long getPermissionElementId() {
+        return permissionElementId;
     }
 
     /**
-     * 设置字段 system_menu.permission_id
+     * 设置字段 system_menu.permission_element_id
      *
-     * @param permissionId the value for system_menu.permission_id
+     * @param permissionElementId the value for system_menu.permission_element_id
      */
-    public void setPermissionId(Long permissionId) {
-        this.permissionId = permissionId;
+    public void setPermissionElementId(Long permissionElementId) {
+        this.permissionElementId = permissionElementId;
     }
 
     /**
@@ -86,24 +81,6 @@ public class Menu implements IEntity {
      */
     public void setMenuName(String menuName) {
         this.menuName = menuName == null ? null : menuName.trim();
-    }
-
-    /**
-     * 获取字段 system_menu.menu_url
-     *
-     * @return the value of system_menu.menu_url
-     */
-    public String getMenuUrl() {
-        return menuUrl;
-    }
-
-    /**
-     * 设置字段 system_menu.menu_url
-     *
-     * @param menuUrl the value for system_menu.menu_url
-     */
-    public void setMenuUrl(String menuUrl) {
-        this.menuUrl = menuUrl == null ? null : menuUrl.trim();
     }
 
     /**
