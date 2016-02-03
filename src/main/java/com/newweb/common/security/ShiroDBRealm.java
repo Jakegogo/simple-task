@@ -1,6 +1,5 @@
 package com.newweb.common.security;
 
-import com.newweb.domain.security.Permission;
 import com.newweb.domain.user.User;
 import com.newweb.service.UserService;
 import org.apache.shiro.authc.*;
@@ -60,6 +59,13 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		return this.pathMatcher;
 	}
 
+
+	/**
+	 * 匹配路径
+	 * @param pattern 表达式
+	 * @param path 路径
+	 * @return
+	 */
 	protected boolean pathMatches(String pattern, String path) {
 		PatternMatcher pathMatcher = this.getPathMatcher();
 		return pathMatcher.matches(pattern, path);

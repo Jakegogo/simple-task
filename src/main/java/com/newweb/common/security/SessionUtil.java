@@ -1,7 +1,3 @@
-/*   
- * Copyright (c) 2015  by XuanWu Wireless Technology Co.Ltd. 
- *             All rights reserved  
- */
 package com.newweb.common.security;
 
 import org.apache.shiro.SecurityUtils;
