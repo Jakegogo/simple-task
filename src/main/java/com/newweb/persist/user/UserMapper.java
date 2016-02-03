@@ -2,9 +2,6 @@ package com.newweb.persist.user;
 
 import com.newweb.domain.user.User;
 
-import java.util.List;
-import java.util.Set;
-
 public interface UserMapper {
     int delete(String id);
 
@@ -19,10 +16,9 @@ public interface UserMapper {
     int update(User record);
 
     /**
-     * 根据用户名查询用户
+     * 根据用户名查找User
      * @param username 用户名
      * @return
      */
     User findByUsername(String username);
-
 }

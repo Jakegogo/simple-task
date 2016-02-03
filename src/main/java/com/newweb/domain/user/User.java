@@ -32,6 +32,16 @@ public class User implements IEntity {
      */
     private Boolean userLocked;
 
+    /**
+     *  用户创建时间
+     */
+    private Long userCreateDate;
+
+    /**
+     *  用户创建者
+     */
+    private String userCreator;
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -122,5 +132,41 @@ public class User implements IEntity {
      */
     public void setUserLocked(Boolean userLocked) {
         this.userLocked = userLocked;
+    }
+
+    /**
+     * 获取字段 system_user.user_create_date
+     *
+     * @return the value of system_user.user_create_date
+     */
+    public Long getUserCreateDate() {
+        return userCreateDate;
+    }
+
+    /**
+     * 设置字段 system_user.user_create_date
+     *
+     * @param userCreateDate the value for system_user.user_create_date
+     */
+    public void setUserCreateDate(Long userCreateDate) {
+        this.userCreateDate = userCreateDate;
+    }
+
+    /**
+     * 获取字段 system_user.user_creator
+     *
+     * @return the value of system_user.user_creator
+     */
+    public String getUserCreator() {
+        return userCreator;
+    }
+
+    /**
+     * 设置字段 system_user.user_creator
+     *
+     * @param userCreator the value for system_user.user_creator
+     */
+    public void setUserCreator(String userCreator) {
+        this.userCreator = userCreator == null ? null : userCreator.trim();
     }
 }

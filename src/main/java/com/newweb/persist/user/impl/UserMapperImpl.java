@@ -21,6 +21,8 @@ public class UserMapperImpl extends AbstractEntityMapper<User , String> implemen
         return "com.newweb.persist.user.UserMapper";
     }
 
+
+
     @Override
     public User findByUsername(String username) {
         try (SqlSession session = sqlSessionFactory.openSession()) {

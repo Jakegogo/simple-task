@@ -7,9 +7,11 @@
     <result column="user_name" jdbcType="VARCHAR" property="userName" />
     <result column="user_password" jdbcType="VARCHAR" property="userPassword" />
     <result column="user_locked" jdbcType="BIT" property="userLocked" />
+    <result column="user_create_date" jdbcType="BIGINT" property="userCreateDate" />
+    <result column="user_creator" jdbcType="VARCHAR" property="userCreator" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, user_name, user_password, user_locked
+    id, user_id, user_name, user_password, user_locked, user_create_date, user_creator
   </sql>
   <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -23,9 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.newweb.domain.user.User">
     insert into system_user (id, user_id, user_name, 
-      user_password, user_locked)
+      user_password, user_locked, user_create_date, 
+      user_creator)
     values (#{id,jdbcType=CHAR}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
-      #{userPassword,jdbcType=VARCHAR}, #{userLocked,jdbcType=BIT})
+      #{userPassword,jdbcType=VARCHAR}, #{userLocked,jdbcType=BIT}, #{userCreateDate,jdbcType=BIGINT}, 
+      #{userCreator,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.newweb.domain.user.User">
     insert into system_user
@@ -45,6 +49,12 @@
       <if test="userLocked != null">
         user_locked,
       </if>
+      <if test="userCreateDate != null">
+        user_create_date,
+      </if>
+      <if test="userCreator != null">
+        user_creator,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -61,6 +71,12 @@
       </if>
       <if test="userLocked != null">
         #{userLocked,jdbcType=BIT},
+      </if>
+      <if test="userCreateDate != null">
+        #{userCreateDate,jdbcType=BIGINT},
+      </if>
+      <if test="userCreator != null">
+        #{userCreator,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -79,6 +95,12 @@
       <if test="userLocked != null">
         user_locked = #{userLocked,jdbcType=BIT},
       </if>
+      <if test="userCreateDate != null">
+        user_create_date = #{userCreateDate,jdbcType=BIGINT},
+      </if>
+      <if test="userCreator != null">
+        user_creator = #{userCreator,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
@@ -87,13 +109,17 @@
     set user_id = #{userId,jdbcType=INTEGER},
       user_name = #{userName,jdbcType=VARCHAR},
       user_password = #{userPassword,jdbcType=VARCHAR},
-      user_locked = #{userLocked,jdbcType=BIT}
+      user_locked = #{userLocked,jdbcType=BIT},
+      user_create_date = #{userCreateDate,jdbcType=BIGINT},
+      user_creator = #{userCreator,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
+
   <select id="findByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from system_user
     where user_name = #{username,jdbcType=CHAR}
   </select>
+
 </mapper>

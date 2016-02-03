@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.newweb.persist.security.GroupMapper">
+  <resultMap id="BaseResultMap" type="com.newweb.domain.security.Group">
+    <id column="group_id" jdbcType="BIGINT" property="groupId" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="group_parent" jdbcType="BIGINT" property="groupParent" />
+    <result column="group_desc" jdbcType="VARCHAR" property="groupDesc" />
+    <result column="group_creator" jdbcType="VARCHAR" property="groupCreator" />
+    <result column="group_create_date" jdbcType="BIGINT" property="groupCreateDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    group_id, group_name, group_parent, group_desc, group_creator, group_create_date
+  </sql>
+  <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from system_group
+    where group_id = #{groupId,jdbcType=BIGINT}
+  </select>
+  <delete id="delete" parameterType="java.lang.Long">
+    delete from system_group
+    where group_id = #{groupId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.newweb.domain.security.Group">
+    insert into system_group (group_id, group_name, group_parent, 
+      group_desc, group_creator, group_create_date
+      )
+    values (#{groupId,jdbcType=BIGINT}, #{groupName,jdbcType=VARCHAR}, #{groupParent,jdbcType=BIGINT}, 
+      #{groupDesc,jdbcType=VARCHAR}, #{groupCreator,jdbcType=VARCHAR}, #{groupCreateDate,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.newweb.domain.security.Group">
+    insert into system_group
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        group_id,
+      </if>
+      <if test="groupName != null">
+        group_name,
+      </if>
+      <if test="groupParent != null">
+        group_parent,
+      </if>
+      <if test="groupDesc != null">
+        group_desc,
+      </if>
+      <if test="groupCreator != null">
+        group_creator,
+      </if>
+      <if test="groupCreateDate != null">
+        group_create_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="groupId != null">
+        #{groupId,jdbcType=BIGINT},
+      </if>
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupParent != null">
+        #{groupParent,jdbcType=BIGINT},
+      </if>
+      <if test="groupDesc != null">
+        #{groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCreator != null">
+        #{groupCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCreateDate != null">
+        #{groupCreateDate,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateSelective" parameterType="com.newweb.domain.security.Group">
+    update system_group
+    <set>
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
+      </if>
+      <if test="groupParent != null">
+        group_parent = #{groupParent,jdbcType=BIGINT},
+      </if>
+      <if test="groupDesc != null">
+        group_desc = #{groupDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCreator != null">
+        group_creator = #{groupCreator,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCreateDate != null">
+        group_create_date = #{groupCreateDate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where group_id = #{groupId,jdbcType=BIGINT}
+  </update>
+  <update id="update" parameterType="com.newweb.domain.security.Group">
+    update system_group
+    set group_name = #{groupName,jdbcType=VARCHAR},
+      group_parent = #{groupParent,jdbcType=BIGINT},
+      group_desc = #{groupDesc,jdbcType=VARCHAR},
+      group_creator = #{groupCreator,jdbcType=VARCHAR},
+      group_create_date = #{groupCreateDate,jdbcType=BIGINT}
+    where group_id = #{groupId,jdbcType=BIGINT}
+  </update>
+</mapper>

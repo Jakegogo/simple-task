@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50624
+Source Server         : local
+Source Server Version : 50547
 Source Host           : localhost:3306
 Source Database       : test
 
 Target Server Type    : MYSQL
-Target Server Version : 50624
+Target Server Version : 50547
 File Encoding         : 65001
 
-Date: 2016-02-02 14:33:23
+Date: 2016-02-03 23:35:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -24,6 +24,8 @@ CREATE TABLE `system_group` (
   `group_name` varchar(128) NOT NULL COMMENT '组名称',
   `group_parent` bigint(11) DEFAULT NULL COMMENT '上级组ID',
   `group_desc` varchar(128) DEFAULT NULL COMMENT '组描述',
+  `group_creator` varchar(64) DEFAULT NULL COMMENT '分组创建者',
+  `group_create_date` bigint(20) DEFAULT NULL COMMENT '分组创建时间',
   PRIMARY KEY (`group_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
