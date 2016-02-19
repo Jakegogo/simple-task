@@ -10,4 +10,10 @@ import com.newweb.common.constance.CommonErrorCode;
 public interface ErrorCode extends CommonErrorCode {
 
 
+    // ---------------用户模块 1---------------
+    /**
+     * 用户名或密码错误
+     */
+    int LOGIN_FAILURE = -10001;
+
 }

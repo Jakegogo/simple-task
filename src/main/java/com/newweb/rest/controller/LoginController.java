@@ -1,6 +1,7 @@
 package com.newweb.rest.controller;
 
 import com.newweb.common.util.rest.RestResult;
+import com.newweb.constance.ErrorCode;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -47,7 +48,7 @@ public class LoginController {
             //其他错误，比如锁定，如果想单独处理请单独 catch 处理
             error = "其他错误：" + e.getMessage();
         }
-        return RestResult.failure(-1, error);
+        return RestResult.failure(ErrorCode.LOGIN_FAILURE, error);
     }
 
 }
