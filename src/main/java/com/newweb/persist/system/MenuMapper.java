@@ -1,8 +1,12 @@
 package com.newweb.persist.system;
 
+import com.newweb.common.util.QueryParameters;
 import com.newweb.domain.system.Menu;
+import java.util.List;
 
 public interface MenuMapper {
+    List<Menu> page(QueryParameters queryParam);
+
     int delete(Long menuId);
 
     int insert(Menu record);

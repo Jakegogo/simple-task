@@ -14,9 +14,16 @@
         <!-- beginningDelimiter和endingDelimiter：指明数据库的用于标记数据库对象名的符号，比如ORACLE就是双引号，MYSQL默认是`反引号； -->
         <property name="beginningDelimiter" value="`"/>
         <property name="endingDelimiter" value="`"/>
+        <!-- 分页查询参数类型 -->
+        <property name="queryParameterType" value="com.newweb.common.util.QueryParameters"/>
+        <property name="pageMethodName" value="page"/>
+        <property name="queryParamName" value="queryParam"/>
 
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>
-        <plugin type="org.mybatis.generator.plugins.IEntityPlugin"></plugin>
+        <plugin type="org.mybatis.generator.plugins.IEntityPlugin">
+            <!-- 实体实现的接口 -->
+            <property name="interfaceClass" value="com.newweb.common.domain.IEntity"/>
+        </plugin>
         <plugin type="org.mybatis.generator.plugins.MysqlPaginationPlugin"></plugin>
 
         <commentGenerator>
@@ -152,13 +159,13 @@
                                 <!--replaceString=""/>&ndash;&gt;-->
         <!--</table>-->
 
-        <!--<table tableName="system_menu" domainObjectName="system.Menu"-->
-               <!--enableCountByExample="false" enableUpdateByExample="false"-->
-               <!--enableDeleteByExample="false" enableSelectByExample="false"-->
-               <!--selectByExampleQueryId="false">-->
-            <!--&lt;!&ndash;<columnRenamingRule searchString="^D_"-->
-                                <!--replaceString=""/>&ndash;&gt;-->
-        <!--</table>-->
+        <table tableName="system_menu" domainObjectName="system.Menu"
+               enableCountByExample="false" enableUpdateByExample="false"
+               enableDeleteByExample="false" enableSelectByExample="false"
+               selectByExampleQueryId="false">
+            <!--<columnRenamingRule searchString="^D_"
+                                replaceString=""/>-->
+        </table>
 
         <!--<table tableName="system_permission_element" domainObjectName="security.PermissionElement"-->
                <!--enableCountByExample="false" enableUpdateByExample="false"-->
