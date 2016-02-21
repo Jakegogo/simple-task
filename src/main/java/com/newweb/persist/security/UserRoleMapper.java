@@ -24,5 +24,4 @@ public interface UserRoleMapper {
      * @return
      */
     List<String> findRoles(String username);
-
 }

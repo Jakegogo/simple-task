@@ -1,12 +1,11 @@
 package com.newweb.domain.security;
 
-import com.newweb.common.domain.IEntity;
+import java.io.Serializable;
 
 /**
  *  
-
  */
-public class UserGroupKey implements IEntity {
+public class UserGroupKey implements Serializable {
     /**
      *  组ID
      */
@@ -53,9 +52,5 @@ public class UserGroupKey implements IEntity {
      */
     public void setUserId(Long userId) {
         this.userId = userId;
-    }
-
-    public String getId() {
-        return null;
     }
 }

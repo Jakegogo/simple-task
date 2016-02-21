@@ -12,6 +12,41 @@
   <sql id="Base_Column_List">
     group_id, group_name, group_parent, group_desc, group_creator, group_create_date
   </sql>
+  <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_group
+    <if test="params != null">
+      <include refid="exampleCondition" />
+    </if>
+    <if test="sorts != null">
+      <foreach collection="sorts" index="key" item="value" open="order by" separator=",">
+        ${key} ${value}
+      </foreach>
+    </if>
+    <if test="page != null">
+      limit #{page.begin} , #{page.length}
+    </if>
+  </select>
+  <sql id="exampleCondition">
+    <where>
+      <if test="params.groupName != null">
+        and group_name like '%${params.groupName}%'
+      </if>
+      <if test="params.groupParent != null">
+        and group_parent = #{params.groupParent}
+      </if>
+      <if test="params.groupDesc != null">
+        and group_desc like '%${params.groupDesc}%'
+      </if>
+      <if test="params.groupCreator != null">
+        and group_creator like '%${params.groupCreator}%'
+      </if>
+      <if test="params.groupCreateDate != null">
+        and group_create_date = #{params.groupCreateDate}
+      </if>
+    </where>
+  </sql>
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

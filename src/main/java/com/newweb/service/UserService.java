@@ -1,7 +1,10 @@
 package com.newweb.service;
 
+import com.newweb.common.util.QueryParameters;
 import com.newweb.domain.user.User;
+import com.newweb.rest.controller.dto.UserDto;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -9,6 +12,13 @@ import java.util.Set;
  * Created by Jake on 1/18 0018.
  */
 public interface UserService {
+
+    /**
+     * 分页
+     * @param queryParam 分页查询参数
+     * @return
+     */
+    Collection<UserDto> page(QueryParameters queryParam);
 
     /**
      * 根据用户名查找用户

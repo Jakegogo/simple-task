@@ -16,6 +16,13 @@ import java.util.List;
 public interface IEntityMapper<T extends IEntity, PK extends Serializable> extends IMapper <T> {
 
 	/**
+	 * 分页
+	 * @param queryParam 分页查询参数
+	 * @return
+     */
+	List<T> page(QueryParameters queryParam);
+
+	/**
 	 * 根据实体ID，查找实体
 	 * 
 	 * @param id

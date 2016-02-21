@@ -24,6 +24,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 public abstract class AbstractEntityMapper<T extends IEntity, PK extends Serializable> extends AbstractMapper<T> implements IEntityMapper<T, PK> {
 
 	@Override
+	public List<T> page(QueryParameters queryParam) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectList(fullSqlId("page"), queryParam);
+		}
+	}
+
+	@Override
 	public T get(PK id) {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne(fullSqlId("get"), id);

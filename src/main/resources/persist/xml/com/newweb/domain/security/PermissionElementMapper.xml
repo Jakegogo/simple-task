@@ -15,6 +15,47 @@
     element_id, element_name, permission_id, element_type, element_key, element_value, 
     element_extra, element_desc
   </sql>
+  <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_permission_element
+    <if test="params != null">
+      <include refid="exampleCondition" />
+    </if>
+    <if test="sorts != null">
+      <foreach collection="sorts" index="key" item="value" open="order by" separator=",">
+        ${key} ${value}
+      </foreach>
+    </if>
+    <if test="page != null">
+      limit #{page.begin} , #{page.length}
+    </if>
+  </select>
+  <sql id="exampleCondition">
+    <where>
+      <if test="params.elementName != null">
+        and element_name like '%${params.elementName}%'
+      </if>
+      <if test="params.permissionId != null">
+        and permission_id = #{params.permissionId}
+      </if>
+      <if test="params.elementType != null">
+        and element_type = #{params.elementType}
+      </if>
+      <if test="params.elementKey != null">
+        and element_key like '%${params.elementKey}%'
+      </if>
+      <if test="params.elementValue != null">
+        and element_value like '%${params.elementValue}%'
+      </if>
+      <if test="params.elementExtra != null">
+        and element_extra like '%${params.elementExtra}%'
+      </if>
+      <if test="params.elementDesc != null">
+        and element_desc like '%${params.elementDesc}%'
+      </if>
+    </where>
+  </sql>
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

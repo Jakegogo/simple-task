@@ -1,12 +1,11 @@
 package com.newweb.domain.security;
 
-import com.newweb.common.domain.IEntity;
+import java.io.Serializable;
 
 /**
  *  
-
  */
-public class UserRoleKey implements IEntity {
+public class UserRoleKey implements Serializable {
     /**
      *  用户ID
      */
@@ -53,9 +52,5 @@ public class UserRoleKey implements IEntity {
      */
     public void setRoleId(Long roleId) {
         this.roleId = roleId;
-    }
-
-    public String getId() {
-        return null;
     }
 }

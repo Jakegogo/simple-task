@@ -24,5 +24,4 @@ public interface RolePermissionMapper {
      * @return
      */
     List<String> findPermissions(String username);
-
 }

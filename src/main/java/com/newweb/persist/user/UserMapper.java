@@ -1,8 +1,12 @@
 package com.newweb.persist.user;
 
+import com.newweb.common.util.QueryParameters;
 import com.newweb.domain.user.User;
+import java.util.List;
 
 public interface UserMapper {
+    List<User> page(QueryParameters queryParam);
+
     int delete(String id);
 
     int insert(User record);

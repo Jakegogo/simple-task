@@ -9,6 +9,32 @@
   <sql id="Base_Column_List">
     role_id, role_name, role_desc
   </sql>
+  <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_role
+    <if test="params != null">
+      <include refid="exampleCondition" />
+    </if>
+    <if test="sorts != null">
+      <foreach collection="sorts" index="key" item="value" open="order by" separator=",">
+        ${key} ${value}
+      </foreach>
+    </if>
+    <if test="page != null">
+      limit #{page.begin} , #{page.length}
+    </if>
+  </select>
+  <sql id="exampleCondition">
+    <where>
+      <if test="params.roleName != null">
+        and role_name like '%${params.roleName}%'
+      </if>
+      <if test="params.roleDesc != null">
+        and role_desc like '%${params.roleDesc}%'
+      </if>
+    </where>
+  </sql>
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

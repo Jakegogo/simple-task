@@ -13,6 +13,44 @@
   <sql id="Base_Column_List">
     id, user_id, user_name, user_password, user_locked, user_create_date, user_creator
   </sql>
+  <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_user
+    <if test="params != null">
+      <include refid="exampleCondition" />
+    </if>
+    <if test="sorts != null">
+      <foreach collection="sorts" index="key" item="value" open="order by" separator=",">
+        ${key} ${value}
+      </foreach>
+    </if>
+    <if test="page != null">
+      limit #{page.begin} , #{page.length}
+    </if>
+  </select>
+  <sql id="exampleCondition">
+    <where>
+      <if test="params.userId != null">
+        and user_id = #{params.userId}
+      </if>
+      <if test="params.userName != null">
+        and user_name like '%${params.userName}%'
+      </if>
+      <if test="params.userPassword != null">
+        and user_password like '%${params.userPassword}%'
+      </if>
+      <if test="params.userLocked != null">
+        and user_locked = #{params.userLocked}
+      </if>
+      <if test="params.userCreateDate != null">
+        and user_create_date = #{params.userCreateDate}
+      </if>
+      <if test="params.userCreator != null">
+        and user_creator like '%${params.userCreator}%'
+      </if>
+    </where>
+  </sql>
   <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

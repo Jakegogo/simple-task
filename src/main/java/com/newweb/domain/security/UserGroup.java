@@ -1,12 +1,11 @@
 package com.newweb.domain.security;
 
-import com.newweb.common.domain.IEntity;
+import java.io.Serializable;
 
 /**
  *  
-
  */
-public class UserGroup extends UserGroupKey implements IEntity {
+public class UserGroup extends UserGroupKey implements Serializable {
     /**
      *  创建者
      */
@@ -76,9 +75,5 @@ public class UserGroup extends UserGroupKey implements IEntity {
      */
     public void setCreateTime(Long createTime) {
         this.createTime = createTime;
-    }
-
-    public String getId() {
-        return null;
     }
 }

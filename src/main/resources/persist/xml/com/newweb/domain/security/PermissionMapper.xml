@@ -9,6 +9,32 @@
   <sql id="Base_Column_List">
     permission_id, permission_name, permission_desc
   </sql>
+  <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_permission
+    <if test="params != null">
+      <include refid="exampleCondition" />
+    </if>
+    <if test="sorts != null">
+      <foreach collection="sorts" index="key" item="value" open="order by" separator=",">
+        ${key} ${value}
+      </foreach>
+    </if>
+    <if test="page != null">
+      limit #{page.begin} , #{page.length}
+    </if>
+  </select>
+  <sql id="exampleCondition">
+    <where>
+      <if test="params.permissionName != null">
+        and permission_name like '%${params.permissionName}%'
+      </if>
+      <if test="params.permissionDesc != null">
+        and permission_desc like '%${params.permissionDesc}%'
+      </if>
+    </where>
+  </sql>
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

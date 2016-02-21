@@ -1,12 +1,11 @@
 package com.newweb.domain.security;
 
-import com.newweb.common.domain.IEntity;
+import java.io.Serializable;
 
 /**
  *  
-
  */
-public class RolePermission extends RolePermissionKey implements IEntity {
+public class RolePermission extends RolePermissionKey implements Serializable {
     /**
      *  角色权限描述
      */
@@ -30,9 +29,5 @@ public class RolePermission extends RolePermissionKey implements IEntity {
      */
     public void setRolePermissionDesc(String rolePermissionDesc) {
         this.rolePermissionDesc = rolePermissionDesc == null ? null : rolePermissionDesc.trim();
-    }
-
-    public String getId() {
-        return null;
     }
 }

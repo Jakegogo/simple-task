@@ -5,6 +5,7 @@
 package com.newweb.common.util;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
@@ -18,9 +19,9 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class QueryParameters {
 
-	private Map<String, Object> params = new HashMap<String, Object>();
+	private Map<String, Object> params;
 
-	private Map<String, String> sorts = new HashMap<String, String>();
+	private Map<String, String> sorts;
 
 	public QueryParameters() {
 
@@ -42,7 +43,8 @@ public class QueryParameters {
 		if (value == null || "".equals(value)) {
 			return this;
 		}
-		params.put(key, value);
+		initParamMap();
+		this.params.put(key, value);
 		return this;
 	}
 
@@ -55,6 +57,7 @@ public class QueryParameters {
 	 */
 	public QueryParameters addParams(Map<String, Object> params) {
 		if (params != null && !params.isEmpty()) {
+			initParamMap();
 			for (Map.Entry<String, Object> entry : params.entrySet()) {
 				addParam(entry.getKey(), entry.getValue());
 			}
@@ -76,6 +79,7 @@ public class QueryParameters {
 		if (StringUtils.isBlank(ascDesc)) {
 			return this;
 		}
+		initSortMap();
 		if ("asc".equalsIgnoreCase(ascDesc)) {
 			sorts.put(key, "asc");
 		} else if ("desc".equalsIgnoreCase(ascDesc)) {
@@ -95,11 +99,24 @@ public class QueryParameters {
 	 */
 	public QueryParameters addSorts(Map<String, String> sorts) {
 		if (sorts != null && !sorts.isEmpty()) {
+			initSortMap();
 			for (Map.Entry<String, String> entry : sorts.entrySet()) {
 				addSort(entry.getKey(), entry.getValue());
 			}
 		}
 		return this;
+	}
+
+	private void initParamMap() {
+		if (this.params == null) {
+			this.params = new HashMap<String, Object>();
+		}
+	}
+
+	private void initSortMap() {
+		if (this.sorts == null) {
+            this.sorts = new LinkedHashMap<String, String>();
+        }
 	}
 
 	public Map<String, Object> getParams() {

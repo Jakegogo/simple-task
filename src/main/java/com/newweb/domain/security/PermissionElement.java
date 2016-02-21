@@ -4,7 +4,6 @@ import com.newweb.common.domain.IEntity;
 
 /**
  *  
-
  */
 public class PermissionElement implements IEntity {
     /**
