@@ -4,6 +4,7 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
+    <!-- 设置jdbc驱动包路径 -->
     <classPathEntry
             location="C:\Users\Jake\.m2\repository\mysql\mysql-connector-java\5.1.17\mysql-connector-java-5.1.17.jar" />
     <context id="my" targetRuntime="MyBatis3">
