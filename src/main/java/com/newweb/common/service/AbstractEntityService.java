@@ -55,11 +55,15 @@ public abstract class AbstractEntityService<D, E extends IEntity, PK extends Ser
 
     /**
      * 保存实体
-     * @param e 实体
+     * @param dto 实体Dto
      */
-    public void save(E e) {
+    public void save(D dto) {
         IEntityMapper<E, PK> entityMapper = getEntityMapper();
-        entityMapper.save(e);
+        E entity = entityAssembler.toEntity(dto);
+        if (entity == null) {
+            return;
+        }
+        entityMapper.save(entity);
     }
 
 

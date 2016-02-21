@@ -7,6 +7,8 @@ import java.util.List;
 public interface UserMapper {
     List<User> page(QueryParameters queryParam);
 
+    int count(QueryParameters queryParam);
+
     int delete(String id);
 
     int insert(User record);

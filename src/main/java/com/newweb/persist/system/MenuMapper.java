@@ -7,6 +7,8 @@ import java.util.List;
 public interface MenuMapper {
     List<Menu> page(QueryParameters queryParam);
 
+    int count(QueryParameters queryParam);
+
     int delete(Long menuId);
 
     int insert(Menu record);

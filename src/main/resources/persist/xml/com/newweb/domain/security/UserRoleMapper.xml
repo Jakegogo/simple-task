@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newweb.persist.security.UserRoleMapper">
+
   <resultMap id="BaseResultMap" type="com.newweb.domain.security.UserRole">
     <id column="user_id" jdbcType="BIGINT" property="userId" />
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
@@ -8,9 +9,11 @@
     <result column="user_role_desc" jdbcType="VARCHAR" property="userRoleDesc" />
     <result column="create_date" jdbcType="BIGINT" property="createDate" />
   </resultMap>
+
   <sql id="Base_Column_List">
     user_id, role_id, user_role_creator, user_role_desc, create_date
   </sql>
+
   <select id="get" parameterType="com.newweb.domain.security.UserRoleKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -18,17 +21,20 @@
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </select>
+
   <delete id="delete" parameterType="com.newweb.domain.security.UserRoleKey">
     delete from system_user_role
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.newweb.domain.security.UserRole">
     insert into system_user_role (user_id, role_id, user_role_creator, 
       user_role_desc, create_date)
     values (#{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}, #{userRoleCreator,jdbcType=VARCHAR}, 
       #{userRoleDesc,jdbcType=VARCHAR}, #{createDate,jdbcType=BIGINT})
   </insert>
+
   <insert id="insertSelective" parameterType="com.newweb.domain.security.UserRole">
     insert into system_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -66,6 +72,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateSelective" parameterType="com.newweb.domain.security.UserRole">
     update system_user_role
     <set>
@@ -82,14 +89,6 @@
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </update>
-  <update id="update" parameterType="com.newweb.domain.security.UserRole">
-    update system_user_role
-    set user_role_creator = #{userRoleCreator,jdbcType=VARCHAR},
-      user_role_desc = #{userRoleDesc,jdbcType=VARCHAR},
-      create_date = #{createDate,jdbcType=BIGINT}
-    where user_id = #{userId,jdbcType=BIGINT}
-      and role_id = #{roleId,jdbcType=BIGINT}
-  </update>
 
   <select id="findRoles" parameterType="java.lang.String" resultType="java.lang.String">
     select role_name from system_role a right join (
@@ -99,5 +98,14 @@
     where user_id = (select user_id from system_user where user_name = #{username,jdbcType=CHAR})
     ) b on a.role_id = b.role_id
   </select>
+
+  <update id="update" parameterType="com.newweb.domain.security.UserRole">
+    update system_user_role
+    set user_role_creator = #{userRoleCreator,jdbcType=VARCHAR},
+      user_role_desc = #{userRoleDesc,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=BIGINT}
+    where user_id = #{userId,jdbcType=BIGINT}
+      and role_id = #{roleId,jdbcType=BIGINT}
+  </update>
 
 </mapper>

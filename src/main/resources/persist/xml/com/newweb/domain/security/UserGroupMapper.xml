@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newweb.persist.security.UserGroupMapper">
+
   <resultMap id="BaseResultMap" type="com.newweb.domain.security.UserGroup">
     <id column="group_id" jdbcType="BIGINT" property="groupId" />
     <id column="user_id" jdbcType="BIGINT" property="userId" />
@@ -8,9 +9,11 @@
     <result column="user_group_desc" jdbcType="VARCHAR" property="userGroupDesc" />
     <result column="create_time" jdbcType="BIGINT" property="createTime" />
   </resultMap>
+
   <sql id="Base_Column_List">
     group_id, user_id, user_group_creator, user_group_desc, create_time
   </sql>
+
   <select id="get" parameterType="com.newweb.domain.security.UserGroupKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
@@ -18,17 +21,20 @@
     where group_id = #{groupId,jdbcType=BIGINT}
       and user_id = #{userId,jdbcType=BIGINT}
   </select>
+
   <delete id="delete" parameterType="com.newweb.domain.security.UserGroupKey">
     delete from system_user_group
     where group_id = #{groupId,jdbcType=BIGINT}
       and user_id = #{userId,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.newweb.domain.security.UserGroup">
     insert into system_user_group (group_id, user_id, user_group_creator, 
       user_group_desc, create_time)
     values (#{groupId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{userGroupCreator,jdbcType=VARCHAR}, 
       #{userGroupDesc,jdbcType=VARCHAR}, #{createTime,jdbcType=BIGINT})
   </insert>
+
   <insert id="insertSelective" parameterType="com.newweb.domain.security.UserGroup">
     insert into system_user_group
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -66,6 +72,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateSelective" parameterType="com.newweb.domain.security.UserGroup">
     update system_user_group
     <set>
@@ -82,6 +89,7 @@
     where group_id = #{groupId,jdbcType=BIGINT}
       and user_id = #{userId,jdbcType=BIGINT}
   </update>
+
   <update id="update" parameterType="com.newweb.domain.security.UserGroup">
     update system_user_group
     set user_group_creator = #{userGroupCreator,jdbcType=VARCHAR},

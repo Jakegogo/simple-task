@@ -7,6 +7,8 @@ import java.util.List;
 public interface RoleMapper {
     List<Role> page(QueryParameters queryParam);
 
+    int count(QueryParameters queryParam);
+
     int delete(Long roleId);
 
     int insert(Role record);

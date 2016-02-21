@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newweb.persist.security.PermissionMapper">
+
   <resultMap id="BaseResultMap" type="com.newweb.domain.security.Permission">
     <id column="permission_id" jdbcType="BIGINT" property="permissionId" />
     <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
     <result column="permission_desc" jdbcType="VARCHAR" property="permissionDesc" />
   </resultMap>
+
   <sql id="Base_Column_List">
     permission_id, permission_name, permission_desc
   </sql>
+
   <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -22,9 +25,10 @@
       </foreach>
     </if>
     <if test="page != null">
-      limit #{page.begin} , #{page.length}
+      limit #{page.from} , #{page.size}
     </if>
   </select>
+
   <sql id="exampleCondition">
     <where>
       <if test="params.permissionName != null">
@@ -35,22 +39,46 @@
       </if>
     </where>
   </sql>
+
+  <select id="count" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+    select
+    count(1)
+    from system_permission
+    <if test="params != null">
+      <include refid="exampleCondition" />
+    </if>
+  </select>
+
+  <sql id="exampleCondition">
+    <where>
+      <if test="params.permissionName != null">
+        and permission_name like '%${params.permissionName}%'
+      </if>
+      <if test="params.permissionDesc != null">
+        and permission_desc like '%${params.permissionDesc}%'
+      </if>
+    </where>
+  </sql>
+
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from system_permission
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </select>
+
   <delete id="delete" parameterType="java.lang.Long">
     delete from system_permission
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </delete>
+
   <insert id="insert" parameterType="com.newweb.domain.security.Permission">
     insert into system_permission (permission_id, permission_name, permission_desc
       )
     values (#{permissionId,jdbcType=BIGINT}, #{permissionName,jdbcType=VARCHAR}, #{permissionDesc,jdbcType=VARCHAR}
       )
   </insert>
+
   <insert id="insertSelective" parameterType="com.newweb.domain.security.Permission">
     insert into system_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -76,6 +104,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateSelective" parameterType="com.newweb.domain.security.Permission">
     update system_permission
     <set>
@@ -88,6 +117,7 @@
     </set>
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </update>
+
   <update id="update" parameterType="com.newweb.domain.security.Permission">
     update system_permission
     set permission_name = #{permissionName,jdbcType=VARCHAR},

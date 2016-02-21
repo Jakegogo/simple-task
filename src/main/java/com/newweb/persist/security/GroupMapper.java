@@ -7,6 +7,8 @@ import java.util.List;
 public interface GroupMapper {
     List<Group> page(QueryParameters queryParam);
 
+    int count(QueryParameters queryParam);
+
     int delete(Long groupId);
 
     int insert(Group record);

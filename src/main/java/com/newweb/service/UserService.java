@@ -21,6 +21,12 @@ public interface UserService {
     Collection<UserDto> page(QueryParameters queryParam);
 
     /**
+     * 保存用户信息
+     * @param userDto UserDto
+     */
+    void save(UserDto userDto);
+
+    /**
      * 根据用户名查找用户
      * @param username 用户名
      * @return

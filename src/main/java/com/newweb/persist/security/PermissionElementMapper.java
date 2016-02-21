@@ -7,6 +7,8 @@ import java.util.List;
 public interface PermissionElementMapper {
     List<PermissionElement> page(QueryParameters queryParam);
 
+    int count(QueryParameters queryParam);
+
     int delete(Long elementId);
 
     int insert(PermissionElement record);

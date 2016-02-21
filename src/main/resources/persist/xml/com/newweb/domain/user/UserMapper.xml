@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newweb.persist.user.UserMapper">
+
+  <select id="findByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from system_user
+    where user_name = #{username,jdbcType=CHAR}
+  </select>
   <resultMap id="BaseResultMap" type="com.newweb.domain.user.User">
     <id column="id" jdbcType="CHAR" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
@@ -10,9 +17,11 @@
     <result column="user_create_date" jdbcType="BIGINT" property="userCreateDate" />
     <result column="user_creator" jdbcType="VARCHAR" property="userCreator" />
   </resultMap>
+
   <sql id="Base_Column_List">
     id, user_id, user_name, user_password, user_locked, user_create_date, user_creator
   </sql>
+
   <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
@@ -26,9 +35,10 @@
       </foreach>
     </if>
     <if test="page != null">
-      limit #{page.begin} , #{page.length}
+      limit #{page.from} , #{page.size}
     </if>
   </select>
+
   <sql id="exampleCondition">
     <where>
       <if test="params.userId != null">
@@ -51,16 +61,51 @@
       </if>
     </where>
   </sql>
+
+  <select id="count" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+    select
+    count(1)
+    from system_user
+    <if test="params != null">
+      <include refid="exampleCondition" />
+    </if>
+  </select>
+
+  <sql id="exampleCondition">
+    <where>
+      <if test="params.userId != null">
+        and user_id = #{params.userId}
+      </if>
+      <if test="params.userName != null">
+        and user_name like '%${params.userName}%'
+      </if>
+      <if test="params.userPassword != null">
+        and user_password like '%${params.userPassword}%'
+      </if>
+      <if test="params.userLocked != null">
+        and user_locked = #{params.userLocked}
+      </if>
+      <if test="params.userCreateDate != null">
+        and user_create_date = #{params.userCreateDate}
+      </if>
+      <if test="params.userCreator != null">
+        and user_creator like '%${params.userCreator}%'
+      </if>
+    </where>
+  </sql>
+
   <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from system_user
     where id = #{id,jdbcType=CHAR}
   </select>
+
   <delete id="delete" parameterType="java.lang.String">
     delete from system_user
     where id = #{id,jdbcType=CHAR}
   </delete>
+
   <insert id="insert" parameterType="com.newweb.domain.user.User">
     insert into system_user (id, user_id, user_name, 
       user_password, user_locked, user_create_date, 
@@ -69,6 +114,7 @@
       #{userPassword,jdbcType=VARCHAR}, #{userLocked,jdbcType=BIT}, #{userCreateDate,jdbcType=BIGINT}, 
       #{userCreator,jdbcType=VARCHAR})
   </insert>
+
   <insert id="insertSelective" parameterType="com.newweb.domain.user.User">
     insert into system_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -118,6 +164,7 @@
       </if>
     </trim>
   </insert>
+
   <update id="updateSelective" parameterType="com.newweb.domain.user.User">
     update system_user
     <set>
@@ -142,6 +189,7 @@
     </set>
     where id = #{id,jdbcType=CHAR}
   </update>
+
   <update id="update" parameterType="com.newweb.domain.user.User">
     update system_user
     set user_id = #{userId,jdbcType=INTEGER},
@@ -152,12 +200,5 @@
       user_creator = #{userCreator,jdbcType=VARCHAR}
     where id = #{id,jdbcType=CHAR}
   </update>
-
-  <select id="findByUsername" parameterType="java.lang.String" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List" />
-    from system_user
-    where user_name = #{username,jdbcType=CHAR}
-  </select>
 
 </mapper>

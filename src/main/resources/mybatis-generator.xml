@@ -17,6 +17,7 @@
         <!-- 分页查询参数类型 -->
         <property name="queryParameterType" value="com.newweb.common.util.QueryParameters"/>
         <property name="pageMethodName" value="page"/>
+        <property name="countMethodName" value="count"/>
         <property name="queryParamName" value="queryParam"/>
 
         <plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin"></plugin>
@@ -102,23 +103,23 @@
             注意，table里面很多参数都是对javaModelGenerator，context等元素的默认属性的一个复写；
          -->
 
-        <!--<table tableName="system_user" domainObjectName="user.User" />-->
+        <table tableName="system_user" domainObjectName="user.User" />
 
-        <!--<table tableName="system_permission" domainObjectName="security.Permission" />-->
+        <table tableName="system_permission" domainObjectName="security.Permission" />
 
-        <!--<table tableName="system_role" domainObjectName="security.Role" />-->
+        <table tableName="system_role" domainObjectName="security.Role" />
 
-        <!--<table tableName="system_user_role" domainObjectName="security.UserRole" />-->
+        <table tableName="system_user_role" domainObjectName="security.UserRole" />
 
-        <!--<table tableName="system_role_permission" domainObjectName="security.RolePermission" />-->
+        <table tableName="system_role_permission" domainObjectName="security.RolePermission" />
 
-        <!--<table tableName="system_group" domainObjectName="security.Group" />-->
+        <table tableName="system_group" domainObjectName="security.Group" />
 
-        <!--<table tableName="system_user_group" domainObjectName="security.UserGroup" />-->
+        <table tableName="system_user_group" domainObjectName="security.UserGroup" />
 
         <table tableName="system_menu" domainObjectName="system.Menu" />
 
-        <!--<table tableName="system_permission_element" domainObjectName="security.PermissionElement" />-->
+        <table tableName="system_permission_element" domainObjectName="security.PermissionElement" />
 
     </context>
 </generatorConfiguration>
