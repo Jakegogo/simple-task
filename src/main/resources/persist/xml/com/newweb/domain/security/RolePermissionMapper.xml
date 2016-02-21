@@ -12,6 +12,7 @@
     )
     ) b on a.permission_id = b.permission_id
   </select>
+
   <resultMap id="BaseResultMap" type="com.newweb.domain.security.RolePermission">
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
     <id column="permission_id" jdbcType="BIGINT" property="permissionId" />

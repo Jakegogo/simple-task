@@ -49,17 +49,6 @@
     </if>
   </select>
 
-  <sql id="exampleCondition">
-    <where>
-      <if test="params.permissionName != null">
-        and permission_name like '%${params.permissionName}%'
-      </if>
-      <if test="params.permissionDesc != null">
-        and permission_desc like '%${params.permissionDesc}%'
-      </if>
-    </where>
-  </sql>
-
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

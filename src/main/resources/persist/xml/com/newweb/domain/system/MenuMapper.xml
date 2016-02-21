@@ -2,54 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newweb.persist.system.MenuMapper">
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<resultMap id="BaseResultMap" type="com.newweb.domain.system.Menu">
+  <resultMap id="BaseResultMap" type="com.newweb.domain.system.Menu">
     <id column="menu_id" jdbcType="BIGINT" property="menuId" />
     <result column="permission_element_id" jdbcType="BIGINT" property="permissionElementId" />
     <result column="menu_name" jdbcType="VARCHAR" property="menuName" />
     <result column="menu_desc" jdbcType="VARCHAR" property="menuDesc" />
   </resultMap>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<sql id="Base_Column_List">
+  <sql id="Base_Column_List">
     menu_id, permission_element_id, menu_name, menu_desc
   </sql>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+  <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from system_menu
@@ -66,19 +30,7 @@
     </if>
   </select>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<sql id="exampleCondition">
+  <sql id="exampleCondition">
     <where>
       <if test="params.permissionElementId != null">
         and permission_element_id = #{params.permissionElementId}
@@ -92,19 +44,7 @@
     </where>
   </sql>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<select id="count" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+  <select id="count" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
     select
     count(1)
     from system_menu
@@ -113,100 +53,26 @@
     </if>
   </select>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<sql id="exampleCondition">
-    <where>
-      <if test="params.permissionElementId != null">
-        and permission_element_id = #{params.permissionElementId}
-      </if>
-      <if test="params.menuName != null">
-        and menu_name like '%${params.menuName}%'
-      </if>
-      <if test="params.menuDesc != null">
-        and menu_desc like '%${params.menuDesc}%'
-      </if>
-    </where>
-  </sql>
-
-
-
-
-
-
-
-  
-
-
-
-
-
-<select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from system_menu
     where menu_id = #{menuId,jdbcType=BIGINT}
   </select>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<delete id="delete" parameterType="java.lang.Long">
+  <delete id="delete" parameterType="java.lang.Long">
     delete from system_menu
     where menu_id = #{menuId,jdbcType=BIGINT}
   </delete>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<insert id="insert" parameterType="com.newweb.domain.system.Menu">
+  <insert id="insert" parameterType="com.newweb.domain.system.Menu">
     insert into system_menu (menu_id, permission_element_id, menu_name, 
       menu_desc)
     values (#{menuId,jdbcType=BIGINT}, #{permissionElementId,jdbcType=BIGINT}, #{menuName,jdbcType=VARCHAR}, 
       #{menuDesc,jdbcType=VARCHAR})
   </insert>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<insert id="insertSelective" parameterType="com.newweb.domain.system.Menu">
+  <insert id="insertSelective" parameterType="com.newweb.domain.system.Menu">
     insert into system_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="menuId != null">
@@ -238,19 +104,7 @@
     </trim>
   </insert>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<update id="updateSelective" parameterType="com.newweb.domain.system.Menu">
+  <update id="updateSelective" parameterType="com.newweb.domain.system.Menu">
     update system_menu
     <set>
       <if test="permissionElementId != null">
@@ -266,29 +120,11 @@
     where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
 
-
-
-
-
-
-
-  
-
-
-
-
-
-<update id="update" parameterType="com.newweb.domain.system.Menu">
+  <update id="update" parameterType="com.newweb.domain.system.Menu">
     update system_menu
     set permission_element_id = #{permissionElementId,jdbcType=BIGINT},
       menu_name = #{menuName,jdbcType=VARCHAR},
       menu_desc = #{menuDesc,jdbcType=VARCHAR}
     where menu_id = #{menuId,jdbcType=BIGINT}
   </update>
-
-
-
-
-
-
 </mapper>

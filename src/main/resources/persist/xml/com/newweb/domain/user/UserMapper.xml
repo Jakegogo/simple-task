@@ -8,6 +8,7 @@
     from system_user
     where user_name = #{username,jdbcType=CHAR}
   </select>
+
   <resultMap id="BaseResultMap" type="com.newweb.domain.user.User">
     <id column="id" jdbcType="CHAR" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
@@ -70,29 +71,6 @@
       <include refid="exampleCondition" />
     </if>
   </select>
-
-  <sql id="exampleCondition">
-    <where>
-      <if test="params.userId != null">
-        and user_id = #{params.userId}
-      </if>
-      <if test="params.userName != null">
-        and user_name like '%${params.userName}%'
-      </if>
-      <if test="params.userPassword != null">
-        and user_password like '%${params.userPassword}%'
-      </if>
-      <if test="params.userLocked != null">
-        and user_locked = #{params.userLocked}
-      </if>
-      <if test="params.userCreateDate != null">
-        and user_create_date = #{params.userCreateDate}
-      </if>
-      <if test="params.userCreator != null">
-        and user_creator like '%${params.userCreator}%'
-      </if>
-    </where>
-  </sql>
 
   <select id="get" parameterType="java.lang.String" resultMap="BaseResultMap">
     select 
@@ -190,7 +168,6 @@
     where id = #{id,jdbcType=CHAR}
   </update>
 
-  <!-- 更新实体 -->
   <update id="update" parameterType="com.newweb.domain.user.User">
     update system_user
     set user_id = #{userId,jdbcType=INTEGER},

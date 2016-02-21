@@ -61,26 +61,6 @@
     </if>
   </select>
 
-  <sql id="exampleCondition">
-    <where>
-      <if test="params.groupName != null">
-        and group_name like '%${params.groupName}%'
-      </if>
-      <if test="params.groupParent != null">
-        and group_parent = #{params.groupParent}
-      </if>
-      <if test="params.groupDesc != null">
-        and group_desc like '%${params.groupDesc}%'
-      </if>
-      <if test="params.groupCreator != null">
-        and group_creator like '%${params.groupCreator}%'
-      </if>
-      <if test="params.groupCreateDate != null">
-        and group_create_date = #{params.groupCreateDate}
-      </if>
-    </where>
-  </sql>
-
   <select id="get" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />

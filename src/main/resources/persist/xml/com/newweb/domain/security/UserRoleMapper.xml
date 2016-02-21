@@ -2,6 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newweb.persist.security.UserRoleMapper">
 
+  <select id="findRoles" parameterType="java.lang.String" resultType="java.lang.String">
+    select role_name from system_role a right join (
+    select
+    role_id
+    from system_user_role
+    where user_id = (select user_id from system_user where user_name = #{username,jdbcType=CHAR})
+    ) b on a.role_id = b.role_id
+  </select>
+
   <resultMap id="BaseResultMap" type="com.newweb.domain.security.UserRole">
     <id column="user_id" jdbcType="BIGINT" property="userId" />
     <id column="role_id" jdbcType="BIGINT" property="roleId" />
@@ -89,15 +98,6 @@
     where user_id = #{userId,jdbcType=BIGINT}
       and role_id = #{roleId,jdbcType=BIGINT}
   </update>
-
-  <select id="findRoles" parameterType="java.lang.String" resultType="java.lang.String">
-    select role_name from system_role a right join (
-    select
-    role_id
-    from system_user_role
-    where user_id = (select user_id from system_user where user_name = #{username,jdbcType=CHAR})
-    ) b on a.role_id = b.role_id
-  </select>
 
   <update id="update" parameterType="com.newweb.domain.security.UserRole">
     update system_user_role
