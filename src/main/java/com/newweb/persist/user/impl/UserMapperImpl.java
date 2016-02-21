@@ -25,9 +25,7 @@ public class UserMapperImpl extends AbstractEntityMapper<User , String> implemen
 
     @Override
     public User findByUsername(String username) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectOne(fullSqlId("findByUsername"), username);
-        }
+        return this.selectOne("findByUsername", username);
     }
 
 }

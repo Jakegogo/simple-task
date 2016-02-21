@@ -16,11 +16,25 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class QueryParameters {
 
+	/**
+	 * 匹配参数
+	 */
 	private Map<String, Object> params;
 
+	/**
+	 * 按字段排序
+	 */
 	private Map<String, String> sorts;
 
+	/**
+	 * 分页
+	 */
 	private PageInfo page;
+
+	/**
+	 * 关键字
+	 */
+	private String keywords;
 
 	public QueryParameters() {
 
@@ -132,4 +146,11 @@ public class QueryParameters {
 		this.page = page;
 	}
 
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
+	}
 }

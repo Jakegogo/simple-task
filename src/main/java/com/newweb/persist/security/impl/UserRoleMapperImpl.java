@@ -1,13 +1,9 @@
 package com.newweb.persist.security.impl;
 
-import com.newweb.common.persist.AbstractMapper;
-import com.newweb.domain.security.RolePermission;
-import com.newweb.domain.security.RolePermissionKey;
+import com.newweb.common.persist.AbstractEntityMapper;
 import com.newweb.domain.security.UserRole;
 import com.newweb.domain.security.UserRoleKey;
-import com.newweb.persist.security.RolePermissionMapper;
 import com.newweb.persist.security.UserRoleMapper;
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -16,14 +12,7 @@ import java.util.List;
  * Created by Administrator on 2016-2-1.
  */
 @Component
-public class UserRoleMapperImpl extends AbstractMapper<UserRole> implements UserRoleMapper {
-
-    @Override
-    public List<String> findRoles(String username) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectList(fullSqlId("findRoles"), username);
-        }
-    }
+public class UserRoleMapperImpl extends AbstractEntityMapper<UserRole, UserRoleKey> implements UserRoleMapper {
 
     @Override
     protected String namesapceForSqlId() {
@@ -31,20 +20,7 @@ public class UserRoleMapperImpl extends AbstractMapper<UserRole> implements User
     }
 
     @Override
-    public int delete(UserRoleKey key) {
-        int count;
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            count = session.delete(fullSqlId("delete"), key);
-            session.commit(true);
-        }
-        return count;
+    public List<String> findRoles(String username) {
+        return this.selectList("findRoles", username);
     }
-
-    @Override
-    public UserRole get(UserRoleKey key) {
-        try (SqlSession session = sqlSessionFactory.openSession()) {
-            return session.selectOne(fullSqlId("get"), key);
-        }
-    }
-
 }

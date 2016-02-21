@@ -13,26 +13,64 @@ import java.util.List;
  * @Data 2016年1月17日
  * @Version 1.0.0
  */
-public interface IEntityMapper<T extends IEntity, PK extends Serializable> extends IMapper <T> {
+public interface IEntityMapper<T extends IEntity, PK extends Serializable> {
 
 	/**
 	 * 分页查询符合查询参数的结果集
 	 * @param queryParam 分页查询参数
 	 * @return
-     */
+	 */
 	List<T> page(QueryParameters queryParam);
 
 	/**
+	 * 查询符合查询参数的实体结果集数量
+	 *
+	 * @param param
+	 * @return
+	 */
+	int count(QueryParameters param);
+
+	/**
 	 * 根据实体ID，查找实体
-	 * 
+	 *
 	 * @param id
 	 * @return
 	 */
 	T get(PK id);
 
 	/**
+	 * 添加一条记录
+	 * @param t T
+	 * @return
+	 */
+	int insert(T t);
+
+	/**
+	 * 添加记录
+	 * (可选字段)
+	 * @param t T
+	 * @return
+	 */
+	int insertSelective(T t);
+
+	/**
+	 * 更新对象
+	 * @Description: 指定更新
+	 * @param t T
+	 * @return int
+	 */
+	int updateSelective(T t);
+
+	/**
+	 * 更新对象
+	 * @param t T
+	 * @return int
+	 */
+	int update(T t);
+
+	/**
 	 * 保存一个实体
-	 * 
+	 *
 	 * @param t
 	 */
 	void save(T t);
@@ -43,13 +81,5 @@ public interface IEntityMapper<T extends IEntity, PK extends Serializable> exten
 	 * @param id
 	 */
 	int delete(PK id);
-
-	/**
-	 * 查询符合查询参数的实体结果集数量
-	 * 
-	 * @param param
-	 * @return
-	 */
-	int count(QueryParameters param);
 
 }

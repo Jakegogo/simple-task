@@ -1,11 +1,11 @@
 package com.newweb.domain.security;
 
-import java.io.Serializable;
+import com.newweb.common.domain.IEntity;
 
 /**
  *  
  */
-public class UserRole extends UserRoleKey implements Serializable {
+public class UserRole extends UserRoleKey implements IEntity {
     /**
      *  创建者
      */
@@ -75,5 +75,12 @@ public class UserRole extends UserRoleKey implements Serializable {
      */
     public void setCreateDate(Long createDate) {
         this.createDate = createDate;
+    }
+
+    public UserRoleKey getId() {
+        UserRoleKey key = new UserRoleKey();
+		key.setUserId(this.getUserId());
+		key.setRoleId(this.getRoleId());
+		return key;
     }
 }
