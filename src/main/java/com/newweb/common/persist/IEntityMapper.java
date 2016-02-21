@@ -16,7 +16,7 @@ import java.util.List;
 public interface IEntityMapper<T extends IEntity, PK extends Serializable> extends IMapper <T> {
 
 	/**
-	 * 分页
+	 * 分页查询符合查询参数的结果集
 	 * @param queryParam 分页查询参数
 	 * @return
      */
@@ -50,14 +50,6 @@ public interface IEntityMapper<T extends IEntity, PK extends Serializable> exten
 	 * @param param
 	 * @return
 	 */
-	int findResultCount(QueryParameters param);
-
-	/**
-	 * 查询符合查询参数的实体结果集
-	 * 
-	 * @param param
-	 * @return
-	 */
-	List<T> findResults(QueryParameters param);
+	int count(QueryParameters param);
 
 }

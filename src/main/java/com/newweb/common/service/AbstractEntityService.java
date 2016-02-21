@@ -3,10 +3,13 @@ package com.newweb.common.service;
 import com.newweb.common.assembler.AbstractAssembler;
 import com.newweb.common.domain.IEntity;
 import com.newweb.common.persist.IEntityMapper;
+import com.newweb.common.util.PageInfo;
+import com.newweb.common.util.PageResult;
 import com.newweb.common.util.QueryParameters;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -29,13 +32,26 @@ public abstract class AbstractEntityService<D, E extends IEntity, PK extends Ser
      * @param queryParam 查询参数
      * @return
      */
-    public Collection<D> page(QueryParameters queryParam) {
+    public PageResult<D> page(QueryParameters queryParam) {
         IEntityMapper<E, PK> entityMapper = getEntityMapper();
+        PageInfo pageInfo = queryParam.getPage();
+
+        int count = entityMapper.count(queryParam);
+        if (count == 0) {
+            return PageResult.valueOf(pageInfo.resetTotal(0),
+                    (List<D>) Collections.emptyList());
+        }
+
+        pageInfo.resetTotal(count);
+
         List<E> entities = entityMapper.page(queryParam);
         if (entities == null || entities.isEmpty()) {
-            return null;
+            return PageResult.valueOf(pageInfo,
+                    (List<D>) Collections.emptyList());
         }
-        return entityAssembler.toDTOs(entities);
+
+        Collection<D> dtos = entityAssembler.toDTOs(entities);
+        return PageResult.valueOf(pageInfo, dtos);
     }
 
     /**

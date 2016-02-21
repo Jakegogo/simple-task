@@ -12,10 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * 查询参数
- * 
- * @author <a href="mailto:liushuaiying@139130.net">Shuaiying.Liu</a>
- * @Data 2015年5月27日
- * @Version 1.0.0
+ * Created by Jake on 2/21 0021.
  */
 public class QueryParameters {
 
@@ -23,11 +20,11 @@ public class QueryParameters {
 
 	private Map<String, String> sorts;
 
+	private PageInfo page;
+
 	public QueryParameters() {
 
 	}
-
-	private PageInfo page;
 
 	/**
 	 * 添加一个命名参数

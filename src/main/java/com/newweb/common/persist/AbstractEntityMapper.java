@@ -31,23 +31,16 @@ public abstract class AbstractEntityMapper<T extends IEntity, PK extends Seriali
 	}
 
 	@Override
+	public int count(QueryParameters queryParam) {
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			return session.selectOne(fullSqlId("count"), queryParam);
+		}
+	}
+
+	@Override
 	public T get(PK id) {
 		try (SqlSession session = sqlSessionFactory.openSession()) {
 			return session.selectOne(fullSqlId("get"), id);
-		}
-	}
-
-	@Override
-	public int findResultCount(QueryParameters param) {
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			return session.selectOne(fullSqlId("findResultCount"), param);
-		}
-	}
-
-	@Override
-	public List<T> findResults(QueryParameters param) {
-		try (SqlSession session = sqlSessionFactory.openSession()) {
-			return session.selectList(fullSqlId("findResults"), param);
 		}
 	}
 

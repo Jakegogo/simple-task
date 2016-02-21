@@ -1,5 +1,6 @@
 package com.newweb.service;
 
+import com.newweb.common.util.PageResult;
 import com.newweb.common.util.QueryParameters;
 import com.newweb.domain.user.User;
 import com.newweb.rest.controller.dto.UserDto;
@@ -18,7 +19,7 @@ public interface UserService {
      * @param queryParam 分页查询参数
      * @return
      */
-    Collection<UserDto> page(QueryParameters queryParam);
+    PageResult<UserDto> page(QueryParameters queryParam);
 
     /**
      * 保存用户信息
