@@ -1,9 +1,11 @@
 package com.newweb.service;
 
+import com.newweb.common.security.RequestPermission;
 import com.newweb.common.util.PageResult;
 import com.newweb.common.util.QueryParameters;
 import com.newweb.domain.user.User;
 import com.newweb.rest.controller.dto.UserDto;
+import org.apache.shiro.authz.Permission;
 
 import java.util.Collection;
 import java.util.Set;
@@ -46,5 +48,5 @@ public interface UserService {
      * @param username 用户名
      * @return
      */
-    Set<String> findPermissions(String username);
+    Set<Permission> findPermissions(String username);
 }

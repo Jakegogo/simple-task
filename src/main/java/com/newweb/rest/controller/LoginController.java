@@ -33,11 +33,11 @@ import javax.ws.rs.core.Response;
 public class LoginController {
 
     @POST
-    public Response login(@FormParam("name") String name, @FormParam("password") String password) {
+    public Response login(@FormParam("username") String username, @FormParam("password") String password) {
         String error;
         try {
             Subject subject = SecurityUtils.getSubject();
-            UsernamePasswordToken token = new UsernamePasswordToken(name, password);
+            UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             subject.login(token);
             return RestResult.success("success");
         } catch (UnknownAccountException e) {

@@ -9,6 +9,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.newweb.common.security.RequestPermission;
 import com.newweb.common.security.SecurityConstance;
 import com.newweb.common.security.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
@@ -41,21 +42,19 @@ public class ShiroUrlBasedFilter extends HttpMethodPermissionFilter {
 			return false;
 		}
 
-		String action = this.getHttpMethodAction(req);
 
 		String url = hreq.getServletPath();
 		if (StringUtils.isBlank(url)) {
 			url = hreq.getPathInfo();// fixed for IBM WebSphere
 		}
-		if (url.endsWith("\\/")) {
-			url = url.substring(0, url.length() - 2);
-		}
-		// 支持rest风格，添加user:read,user:create,user:update,user:delete
-		url += ":" + action;
 
-		if (subject.isPermitted(url)) {
+		String action = this.getHttpMethodAction(req);
+
+		RequestPermission requestPermission = new RequestPermission(url, action);
+		if (subject.isPermitted(requestPermission)) {
 			return true;
 		}
+
 		hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "unauthorized");
 		return false;
 	}

@@ -5,11 +5,12 @@
   <resultMap id="BaseResultMap" type="com.newweb.domain.security.Permission">
     <id column="permission_id" jdbcType="BIGINT" property="permissionId" />
     <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+    <result column="permission_method" jdbcType="VARCHAR" property="permissionMethod" />
     <result column="permission_desc" jdbcType="VARCHAR" property="permissionDesc" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    permission_id, permission_name, permission_desc
+    permission_id, permission_name, permission_method, permission_desc
   </sql>
 
   <select id="page" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
@@ -33,6 +34,9 @@
     <where>
       <if test="params.permissionName != null">
         and permission_name like '%${params.permissionName}%'
+      </if>
+      <if test="params.permissionMethod != null">
+        and permission_method like '%${params.permissionMethod}%'
       </if>
       <if test="params.permissionDesc != null">
         and permission_desc like '%${params.permissionDesc}%'
@@ -62,10 +66,10 @@
   </delete>
 
   <insert id="insert" parameterType="com.newweb.domain.security.Permission">
-    insert into system_permission (permission_id, permission_name, permission_desc
-      )
-    values (#{permissionId,jdbcType=BIGINT}, #{permissionName,jdbcType=VARCHAR}, #{permissionDesc,jdbcType=VARCHAR}
-      )
+    insert into system_permission (permission_id, permission_name, permission_method, 
+      permission_desc)
+    values (#{permissionId,jdbcType=BIGINT}, #{permissionName,jdbcType=VARCHAR}, #{permissionMethod,jdbcType=VARCHAR}, 
+      #{permissionDesc,jdbcType=VARCHAR})
   </insert>
 
   <insert id="insertSelective" parameterType="com.newweb.domain.security.Permission">
@@ -77,6 +81,9 @@
       <if test="permissionName != null">
         permission_name,
       </if>
+      <if test="permissionMethod != null">
+        permission_method,
+      </if>
       <if test="permissionDesc != null">
         permission_desc,
       </if>
@@ -87,6 +94,9 @@
       </if>
       <if test="permissionName != null">
         #{permissionName,jdbcType=VARCHAR},
+      </if>
+      <if test="permissionMethod != null">
+        #{permissionMethod,jdbcType=VARCHAR},
       </if>
       <if test="permissionDesc != null">
         #{permissionDesc,jdbcType=VARCHAR},
@@ -100,6 +110,9 @@
       <if test="permissionName != null">
         permission_name = #{permissionName,jdbcType=VARCHAR},
       </if>
+      <if test="permissionMethod != null">
+        permission_method = #{permissionMethod,jdbcType=VARCHAR},
+      </if>
       <if test="permissionDesc != null">
         permission_desc = #{permissionDesc,jdbcType=VARCHAR},
       </if>
@@ -110,6 +123,7 @@
   <update id="update" parameterType="com.newweb.domain.security.Permission">
     update system_permission
     set permission_name = #{permissionName,jdbcType=VARCHAR},
+      permission_method = #{permissionMethod,jdbcType=VARCHAR},
       permission_desc = #{permissionDesc,jdbcType=VARCHAR}
     where permission_id = #{permissionId,jdbcType=BIGINT}
   </update>

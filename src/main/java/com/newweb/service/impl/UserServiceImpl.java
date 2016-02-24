@@ -2,6 +2,7 @@ package com.newweb.service.impl;
 
 import com.newweb.common.persist.AbstractEntityMapper;
 import com.newweb.common.persist.IEntityMapper;
+import com.newweb.common.security.RequestPermission;
 import com.newweb.common.service.AbstractEntityService;
 import com.newweb.common.util.QueryParameters;
 import com.newweb.domain.user.User;
@@ -11,6 +12,7 @@ import com.newweb.persist.user.UserMapper;
 import com.newweb.rest.controller.dto.UserDto;
 import com.newweb.rest.controller.dto.assembler.UserAssembler;
 import com.newweb.service.UserService;
+import org.apache.shiro.authz.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,8 +49,8 @@ public class UserServiceImpl extends AbstractEntityService<UserDto, User, String
     }
 
     @Override
-    public Set<String> findPermissions(String username) {
-        List<String> userPermissions = rolePermissionMapper.findPermissions(username);
+    public Set<Permission> findPermissions(String username) {
+        List<RequestPermission> userPermissions = rolePermissionMapper.findPermissions(username);
         if (userPermissions == null) {
             return Collections.emptySet();
         }

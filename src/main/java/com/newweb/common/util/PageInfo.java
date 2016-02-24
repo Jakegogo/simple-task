@@ -22,6 +22,9 @@ public class PageInfo {
 	/** 总记录数 */
 	private int total;
 
+	public PageInfo() {
+	}
+
 	/**
 	 * @param page
 	 *            页码：从1开始

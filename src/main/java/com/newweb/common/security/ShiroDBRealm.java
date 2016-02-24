@@ -4,6 +4,7 @@ import com.newweb.domain.user.User;
 import com.newweb.service.UserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -28,7 +29,7 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		String username = (String)principals.getPrimaryPrincipal();
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		authorizationInfo.setRoles(userService.findRoles(username));
-		authorizationInfo.setStringPermissions(userService.findPermissions(username));
+		authorizationInfo.setObjectPermissions(userService.findPermissions(username));
 		return authorizationInfo;
 	}
 
@@ -73,15 +74,17 @@ public class ShiroDBRealm extends AuthorizingRealm {
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public boolean isPermitted(PrincipalCollection principals, String permission) {
+	public boolean isPermitted(PrincipalCollection principals, Permission permission) {
+		RequestPermission requestPermission = (RequestPermission) permission;
 		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
-		if (info.getStringPermissions().contains(permission)) {
+		if (info.getObjectPermissions().contains(requestPermission)) {
 			return true;
 		}
 
-		Set<String> permissions = info.getStringPermissions();
-		for (String permiss : permissions) {
-			if (pathMatches(permiss, permission)) {
+		Set<Permission> permissions = info.getObjectPermissions();
+		for (Permission permiss : permissions) {
+			RequestPermission p = (RequestPermission) permiss;
+			if (pathMatches(p.getUrl(), requestPermission.getUrl()) && p.matchMethod(requestPermission)) {
 				return true;
 			}
 		}

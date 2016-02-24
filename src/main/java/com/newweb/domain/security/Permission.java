@@ -17,6 +17,11 @@ public class Permission implements IEntity {
     private String permissionName;
 
     /**
+     *  访问方式，:create,:delete,:update,:read,:all
+     */
+    private String permissionMethod;
+
+    /**
      *  权限描述
      */
     private String permissionDesc;
@@ -57,6 +62,24 @@ public class Permission implements IEntity {
      */
     public void setPermissionName(String permissionName) {
         this.permissionName = permissionName == null ? null : permissionName.trim();
+    }
+
+    /**
+     * 获取字段 system_permission.permission_method
+     *
+     * @return the value of system_permission.permission_method
+     */
+    public String getPermissionMethod() {
+        return permissionMethod;
+    }
+
+    /**
+     * 设置字段 system_permission.permission_method
+     *
+     * @param permissionMethod the value for system_permission.permission_method
+     */
+    public void setPermissionMethod(String permissionMethod) {
+        this.permissionMethod = permissionMethod == null ? null : permissionMethod.trim();
     }
 
     /**
