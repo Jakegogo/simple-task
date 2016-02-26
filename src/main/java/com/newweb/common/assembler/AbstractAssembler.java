@@ -27,6 +27,11 @@ public abstract class AbstractAssembler<D, E> {
 		entityClass = GenericsUtils.getSuperClassGenricType(this.getClass(), 1);
 	}
 
+	public AbstractAssembler(Class dtoClass, Class entityClass) {
+		this.dtoClass = dtoClass;
+		this.entityClass = entityClass;
+	}
+
 	/**
 	 * 业务对象转成DTO
 	 * @param e 业务对象

@@ -44,7 +44,7 @@
     </where>
   </sql>
 
-  <select id="count" parameterType="com.newweb.common.util.QueryParameters" resultMap="BaseResultMap">
+  <select id="count" parameterType="com.newweb.common.util.QueryParameters" resultType="int">
     select
     count(1)
     from system_menu

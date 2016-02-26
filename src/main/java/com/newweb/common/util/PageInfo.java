@@ -66,7 +66,7 @@ public class PageInfo {
 		if (page > pages) {
 			page = pages;
 		}
-		if (pages == 0) {
+		if (pages == 0 || page <= 0) {
 			page = 1;
 		}
 		from = (page - 1) * size;

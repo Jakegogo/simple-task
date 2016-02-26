@@ -3,6 +3,7 @@ package com.newweb.common.service;
 import com.newweb.common.assembler.AbstractAssembler;
 import com.newweb.common.domain.IEntity;
 import com.newweb.common.persist.IEntityMapper;
+import com.newweb.common.util.GenericsUtils;
 import com.newweb.common.util.PageInfo;
 import com.newweb.common.util.PageResult;
 import com.newweb.common.util.QueryParameters;
@@ -24,7 +25,9 @@ public abstract class AbstractEntityService<D, E extends IEntity, PK extends Ser
      */
     protected abstract IEntityMapper<E, PK> getEntityMapper();
 
-    private AbstractAssembler<D, E> entityAssembler = new AbstractAssembler<D, E>(){};
+    private AbstractAssembler<D, E> entityAssembler = new AbstractAssembler<D, E>(
+            GenericsUtils.getSuperClassGenricType(this.getClass(), 0),
+            GenericsUtils.getSuperClassGenricType(this.getClass(), 1)){};
 
 
     /**
