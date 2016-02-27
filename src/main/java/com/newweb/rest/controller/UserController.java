@@ -1,5 +1,7 @@
 package com.newweb.rest.controller;
 
+import com.newweb.common.controller.AbstractController;
+import com.newweb.common.service.AbstractEntityService;
 import com.newweb.common.util.QueryParameters;
 import com.newweb.common.util.rest.RestResult;
 import com.newweb.service.UserService;
@@ -18,19 +20,15 @@ import javax.ws.rs.core.Response;
  */
 @Component
 @Path("user")
-public class UserController {
+public class UserController extends AbstractController {
 
     @Autowired
     private UserService userService;
 
-    @POST
-    @Path("/page")
-    @Produces({ MediaType.APPLICATION_JSON })
-    public Response login(QueryParameters queryParam) {
-        return RestResult.success(userService.page(queryParam));
+    @Override
+    public AbstractEntityService getService() {
+        return (AbstractEntityService) userService;
     }
-
-
 
 
 

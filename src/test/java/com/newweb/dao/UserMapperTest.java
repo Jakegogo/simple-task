@@ -16,7 +16,7 @@ public class UserMapperTest extends AbstractBaseTest {
 
     @Test
     public void tesGetUserEntity() {
-        User user = userMapper.get("312312312");
+        User user = userMapper.get("1111111111111111111");
         System.out.println(user);
     }
 
