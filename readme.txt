@@ -8,3 +8,5 @@
                         connectionURL="jdbc:mysql://localhost:3306/test" userId="root"
                         password="密码"/>
                         
+开发或打包大概流程： 
+用maven package命令，会自动调用mybatis-generate自动生成mybatis映射配置、实体对象，dao接口， 快速生成增删改查， 然后基于生成的代码编写更复杂的逻辑
