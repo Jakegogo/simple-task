@@ -1,4 +1,4 @@
-package com.newweb.common.security;
+package com.newweb.common.security.datasecure;
 
 import com.newweb.common.util.QueryParameters;
 

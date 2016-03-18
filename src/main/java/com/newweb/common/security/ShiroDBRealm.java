@@ -54,23 +54,6 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		return authenticationInfo;
 	}
 
-	private PatternMatcher pathMatcher = new AntPathMatcher();
-
-	public PatternMatcher getPathMatcher() {
-		return this.pathMatcher;
-	}
-
-
-	/**
-	 * 匹配路径
-	 * @param pattern 表达式
-	 * @param path 路径
-	 * @return
-	 */
-	protected boolean pathMatches(String pattern, String path) {
-		PatternMatcher pathMatcher = this.getPathMatcher();
-		return pathMatcher.matches(pattern, path);
-	}
 
 	@Override
 	@SuppressWarnings("unchecked")
@@ -79,14 +62,6 @@ public class ShiroDBRealm extends AuthorizingRealm {
 		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
 		if (info.getObjectPermissions().contains(requestPermission)) {
 			return true;
-		}
-
-		Set<Permission> permissions = info.getObjectPermissions();
-		for (Permission permiss : permissions) {
-			RequestPermission p = (RequestPermission) permiss;
-			if (pathMatches(p.getUrl(), requestPermission.getUrl()) && p.matchMethod(requestPermission)) {
-				return true;
-			}
 		}
 		return false;
 	}

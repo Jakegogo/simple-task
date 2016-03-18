@@ -54,7 +54,7 @@ public class UserServiceImpl extends AbstractEntityService<UserDto, User, String
         if (userPermissions == null) {
             return Collections.emptySet();
         }
-        return new TreeSet(userPermissions);
+        return new HashSet<Permission>(userPermissions);
     }
 
     @Override
