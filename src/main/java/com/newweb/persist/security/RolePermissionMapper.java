@@ -1,6 +1,6 @@
 package com.newweb.persist.security;
 
-import com.newweb.common.security.RequestPermission;
+import com.newweb.common.security.PermissionParttern;
 import com.newweb.domain.security.RolePermission;
 import com.newweb.domain.security.RolePermissionKey;
 
@@ -24,5 +24,5 @@ public interface RolePermissionMapper {
      * @param username 用户名
      * @return
      */
-    List<RequestPermission> findPermissions(String username);
+    List<PermissionParttern> findPermissions(String username);
 }

@@ -1,7 +1,7 @@
 package com.newweb.persist.security.impl;
 
 import com.newweb.common.persist.AbstractEntityMapper;
-import com.newweb.common.security.RequestPermission;
+import com.newweb.common.security.PermissionParttern;
 import com.newweb.domain.security.RolePermission;
 import com.newweb.domain.security.RolePermissionKey;
 import com.newweb.persist.security.RolePermissionMapper;
@@ -22,7 +22,7 @@ public class RolePermissionMapperImpl extends AbstractEntityMapper<RolePermissio
     }
 
     @Override
-    public List<RequestPermission> findPermissions(String username) {
+    public List<PermissionParttern> findPermissions(String username) {
         return this.selectList("findPermissions", username);
     }
 

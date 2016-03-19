@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.newweb.persist.security.RolePermissionMapper">
 
-  <select id="findPermissions" parameterType="java.lang.String" resultType="com.newweb.common.security.RequestPermission">
+  <select id="findPermissions" parameterType="java.lang.String" resultType="com.newweb.common.security.PermissionParttern">
     select permission_name as url, permission_method as method from system_permission a right join (
     select
     permission_id

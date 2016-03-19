@@ -8,11 +8,7 @@ import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.AntPathMatcher;
-import org.apache.shiro.util.PatternMatcher;
 import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.Set;
 
 
 /**
@@ -22,6 +18,8 @@ public class ShiroDBRealm extends AuthorizingRealm {
 
 	@Autowired
 	protected UserService userService;
+
+	private RestUrlMatcher restUrlMatcher = new RestUrlMatcher();
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -60,8 +58,11 @@ public class ShiroDBRealm extends AuthorizingRealm {
 	public boolean isPermitted(PrincipalCollection principals, Permission permission) {
 		RequestPermission requestPermission = (RequestPermission) permission;
 		SimpleAuthorizationInfo info = (SimpleAuthorizationInfo) getAuthorizationInfo(principals);
-		if (info.getObjectPermissions().contains(requestPermission)) {
-			return true;
+		for (Permission parttern : info.getObjectPermissions()) {
+			PermissionParttern p = (PermissionParttern) parttern;
+			if (restUrlMatcher.matches(p, requestPermission)) {
+				return true;
+			}
 		}
 		return false;
 	}

@@ -2,9 +2,8 @@ package com.newweb.service.impl;
 
 import com.newweb.common.persist.AbstractEntityMapper;
 import com.newweb.common.persist.IEntityMapper;
-import com.newweb.common.security.RequestPermission;
+import com.newweb.common.security.PermissionParttern;
 import com.newweb.common.service.AbstractEntityService;
-import com.newweb.common.util.QueryParameters;
 import com.newweb.domain.user.User;
 import com.newweb.persist.security.RolePermissionMapper;
 import com.newweb.persist.security.UserRoleMapper;
@@ -50,7 +49,7 @@ public class UserServiceImpl extends AbstractEntityService<UserDto, User, String
 
     @Override
     public Set<Permission> findPermissions(String username) {
-        List<RequestPermission> userPermissions = rolePermissionMapper.findPermissions(username);
+        List<PermissionParttern> userPermissions = rolePermissionMapper.findPermissions(username);
         if (userPermissions == null) {
             return Collections.emptySet();
         }

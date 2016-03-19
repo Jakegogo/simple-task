@@ -11,13 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.newweb.common.security.RequestPermission;
 import com.newweb.common.security.SecurityConstance;
-import com.newweb.common.security.SessionUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
-import org.apache.shiro.util.AntPathMatcher;
-import org.apache.shiro.util.PatternMatcher;
-import org.apache.shiro.web.filter.authz.AuthorizationFilter;
 import org.apache.shiro.web.filter.authz.HttpMethodPermissionFilter;
 import org.apache.shiro.web.filter.mgt.PathMatchingFilterChainResolver;
 
@@ -35,7 +31,6 @@ public class ShiroUrlBasedFilter extends HttpMethodPermissionFilter {
 //			hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "login");
 //			return false;
 //		}
-		PathMatchingFilterChainResolver a = null;
 		Subject subject = SecurityUtils.getSubject();
 		if (!subject.isAuthenticated()) {
 			hresp.setHeader(SecurityConstance.HEADER_ACCESS_STATE, "login");

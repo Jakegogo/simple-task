@@ -9,30 +9,24 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
-import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 
 
 /**
+ * 登录控制器
  * Created by Administrator on 2016-2-1.
  */
+@Path("/")
 @Component
-@Path("login")
 public class LoginController {
 
     @POST
+    @Path("login")
     public Response login(@FormParam("username") String username, @FormParam("password") String password) {
         String error;
         try {
@@ -49,6 +43,18 @@ public class LoginController {
             error = "其他错误：" + e.getMessage();
         }
         return RestResult.failure(ErrorCode.LOGIN_FAILURE, error);
+    }
+
+    @GET
+    @Path("logout")
+    public Response logout() {
+        try {
+            Subject subject = SecurityUtils.getSubject();
+            subject.logout();
+            return RestResult.success();
+        } catch (Exception e) {
+            return RestResult.failure(ErrorCode.LOGIN_FAILURE, e.getMessage());
+        }
     }
 
 }
